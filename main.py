@@ -1,5 +1,6 @@
 
 import cv2
+import logging
 import socket
 
 cap = cv2.VideoCapture(0)
@@ -13,6 +14,11 @@ haar_cascade =cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontal
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 serverAddressPort = ('127.0.0.1', 5052)
 
+
+# Print start loggin:
+print("Log: Starting server and sending...")
+
+# While loop for reading the image
 while True:
     success, img = cap.read()
     
@@ -25,8 +31,8 @@ while True:
     # Iterating through rectangles of detected faces 
     for (x, y, w, h) in faces_rect:
         data = str.encode("P("+str(x) +","+str(y) + ")") 
-        sock.sendto(data, serverAddressPort)
-        print(data)
+        sock.sendto(str.encode("Hey, Unreal Engine!"), serverAddressPort)
+        logging.info('Request received and sent to Unreal Engine.')
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2) 
     
     cv2.imshow('Detected faces', img)
