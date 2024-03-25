@@ -1,39 +1,55 @@
-
 import cv2
-import logging
 import socket
+import time
+import cvzone
+from cvzone.FaceMeshModule import FaceMeshDetector
 
-cap = cv2.VideoCapture(0)
-cap.set(3, 640)
-cap.set(4, 480)
-
-# detector = FaceDetector(minDetectionCon=0.8)
-
-haar_cascade =cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-
+frame_rate = 45
+prev = 0
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 serverAddressPort = ('127.0.0.1', 5052)
 
+cap = cv2.VideoCapture(0)
+detector = FaceMeshDetector(maxFaces=1)
 
-# Print start loggin:
-print("Log: Starting server and sending...")
-
-# While loop for reading the image
 while True:
-    success, img = cap.read()
-    
-    # Converting image to grayscale 
-    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
-    
-    # Applying the face detection method on the grayscale image 
-    faces_rect = haar_cascade.detectMultiScale(gray_img, 1.1, 9) 
-    
-    # Iterating through rectangles of detected faces 
-    for (x, y, w, h) in faces_rect:
-        data = str.encode("P("+str(x) +","+str(y) + ")") 
-        sock.sendto(str.encode("Hey, Unreal Engine!"), serverAddressPort)
-        logging.info('Request received and sent to Unreal Engine.')
-        cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2) 
-    
-    cv2.imshow('Detected faces', img)
-    cv2.waitKey(1)
+    time_elapsed = time.time() - prev
+    res, image = cap.read()
+
+    if time_elapsed > 1. / frame_rate:
+        prev = time.time()
+
+        success, img = cap.read()
+        img, faces = detector.findFaceMesh(img, draw=False)
+
+        if faces:
+            face = faces[0]
+            faceCenter = face[1]
+            leftEye = face[145]
+            rightEye = face[374]
+            w, _ = detector.findDistance(leftEye, rightEye)
+            W = 6.3
+
+            # Finding distance
+            f = 655
+            d = int((W * f) / w)
+
+            # Append z-coordinates.
+            faceCenter[0] = max(faceCenter[0] // 5, 0)
+
+            faceCoordinatesXYZ = faceCenter
+            faceCoordinatesXYZ.append(d)
+
+            cvzone.putTextRect(img, f'Coords: {faceCoordinatesXYZ}',
+                               (face[10][0] - 100, face[10][1] - 50),
+                               scale=2)
+
+            # Send data
+            data = str.encode(str(faceCoordinatesXYZ))
+            print(data)
+            sock.sendto(data, serverAddressPort)
+
+        cv2.imshow("Image", img)
+        cv2.waitKey(1)
+
+
