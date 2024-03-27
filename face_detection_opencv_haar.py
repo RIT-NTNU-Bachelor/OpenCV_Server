@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     source = args.video
 
-    faceCascade = cv2.CascadeClassifier("models/haarcascade_frontalface_default.xml")
+    faceCascade = cv2.CascadeClassifier("src/models/trained_models/haarcascade_frontalface_default.xml")
 
     outputFolder = "output-haar-videos"
     if not os.path.exists(outputFolder):

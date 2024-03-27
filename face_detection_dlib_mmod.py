@@ -52,7 +52,7 @@ if __name__ == "__main__":
     source = args.video
 
     mmodFaceDetector = dlib.cnn_face_detection_model_v1(
-        "models/mmod_human_face_detector.dat",
+        "src/models/trained_models/mmod_human_face_detector.dat",
     )
 
     outputFolder = "output-mmod-videos"
