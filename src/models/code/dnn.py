@@ -12,7 +12,7 @@ def detect_face_dnn(img, net, framework="caffe", conf_threshold=0.7, detectMulti
     - detect_multiple_faces: Boolean flag to detect multiple faces or just the first one.
 
     Returns:
-    - A list of bounding boxes for detected faces or a single bounding box if detect_multiple_faces is False.
+    - A list of bounding boxes for detected faces or a single bounding box if detectMultipleFaces is False.
     """
     frameHeight = img.shape[0]
     frameWidth = img.shape[1]
