@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 haar_cascade = cv2.CascadeClassifier('../src/models/trained_models/haarcascade_frontalface_default.xml')
-dnn_model = cv2.dnn.readNetFromCaffe('../models/deploy.prototxt', '../models/res10_300x300_ssd_iter_140000_fp16.caffemodel')
+dnn_model = cv2.dnn.readNetFromCaffe('../src/models/trained_models/deploy.prototxt', '../src/models/trained_models/res10_300x300_ssd_iter_140000_fp16.caffemodel')
 hog_detector = dlib.get_frontal_face_detector()
 mmod_detector = dlib.cnn_face_detection_model_v1('../src/models/trained_models/mmod_human_face_detector.dat')
 
