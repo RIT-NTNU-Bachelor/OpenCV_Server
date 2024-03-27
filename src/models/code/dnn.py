@@ -1,18 +1,25 @@
 import cv2
 
+def detect_face_dnn(img, net, framework="caffe", conf_threshold=0.7, detectMultipleFaces=False):
+    """
+    Detect faces in an image using a deep neural network (DNN).
 
-def detectFaceOpenCVDnn(net, frame, framework="caffe", conf_threshold=0.7, detectMultipleFaces=False):
-    frameOpencvDnn = frame.copy()
-    frameHeight = frameOpencvDnn.shape[0]
-    frameWidth = frameOpencvDnn.shape[1]
+    Parameters:
+    - img: The input image.
+    - net: The pre-trained DNN model for face detection.
+    - framework: The framework used for the DNN model ('caffe' or 'tensorflow').
+    - conf_threshold: The confidence threshold for detecting faces.
+    - detect_multiple_faces: Boolean flag to detect multiple faces or just the first one.
+
+    Returns:
+    - A list of bounding boxes for detected faces or a single bounding box if detect_multiple_faces is False.
+    """
+    frameHeight = img.shape[0]
+    frameWidth = img.shape[1]
     if framework == "caffe":
-        blob = cv2.dnn.blobFromImage(
-            frameOpencvDnn, 1.0, (300, 300), [104, 117, 123], False, False,
-        )
+        blob = cv2.dnn.blobFromImage(img, 1.0, (300, 300), [104, 117, 123], False, False)
     else:
-        blob = cv2.dnn.blobFromImage(
-            frameOpencvDnn, 1.0, (300, 300), [104, 117, 123], True, False,
-        )
+        blob = cv2.dnn.blobFromImage(img, 1.0, (300, 300), [104, 117, 123], True, False)
 
     net.setInput(blob)
     detections = net.forward()
@@ -31,4 +38,4 @@ def detectFaceOpenCVDnn(net, frame, framework="caffe", conf_threshold=0.7, detec
     if detectMultipleFaces == True:
         return bboxes  # Return all detected faces
     else:
-        return bboxes[0] if bboxes else None  # Return the first face or None if no faces are detected
+        return bboxes[0] if bboxes else None # Return the first face or None if no faces are detected
