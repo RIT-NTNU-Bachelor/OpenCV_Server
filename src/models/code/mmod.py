@@ -1,19 +1,30 @@
 import cv2
 
+def detect_face_mmod(img, detector, inHeight=300, inWidth=0, detectMultipleFaces=False):
+    """
+    Detect faces in an image using the dlib MMOD detector.
 
-def detectFaceDlibMMOD(detector, frame, inHeight=300, inWidth=0, detectMultipleFaces=False):
-    frameDlibMMOD = frame.copy()
-    frameHeight = frameDlibMMOD.shape[0]
-    frameWidth = frameDlibMMOD.shape[1]
+    Parameters:
+    - img: The input image.
+    - detector: The dlib MMOD face detector.
+    - inHeight: The height of the image for detection.
+    - inWidth: The width of the image for detection. If 0, it will be calculated based on the aspect ratio of the input image.
+    - detectMultipleFaces: Boolean flag to indicate whether to detect multiple faces or just the first one.
+
+    Returns:
+    - A list of bounding boxes for each detected face or a single bounding box if detectMultipleFaces is False.
+    """
+    frameHeight = img.shape[0]
+    frameWidth = img.shape[1]
     if not inWidth:
         inWidth = int((frameWidth / frameHeight) * inHeight)
 
     scaleHeight = frameHeight / inHeight
     scaleWidth = frameWidth / inWidth
 
-    frameDlibMMODSmall = cv2.resize(frameDlibMMOD, (inWidth, inHeight))
-    frameDlibMMODSmall = cv2.cvtColor(frameDlibMMODSmall, cv2.COLOR_BGR2RGB)
-    faceRects = detector(frameDlibMMODSmall, 0)
+    resized_img = cv2.resize(img, (inWidth, inHeight))
+    resized_img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
+    faceRects = detector(resized_img, 0)
 
     bboxes = []
     for faceRect in faceRects:
@@ -29,3 +40,4 @@ def detectFaceDlibMMOD(detector, frame, inHeight=300, inWidth=0, detectMultipleF
         return bboxes  # Return all detected faces
     else:
         return bboxes[0] if bboxes else None  # Return the first face or None if no faces are detected
+
