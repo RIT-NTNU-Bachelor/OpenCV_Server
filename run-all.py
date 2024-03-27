@@ -8,14 +8,14 @@ import numpy as np
 
 # Model files
 # OpenCV HAAR
-faceCascade = cv2.CascadeClassifier("models/haarcascade_frontalface_default.xml")
+faceCascade = cv2.CascadeClassifier("src/models/trained_models/haarcascade_frontalface_default.xml")
 
 # DLIB HOG
 hogFaceDetector = dlib.get_frontal_face_detector()
 
 # DLIB MMOD
 dnnFaceDetector = dlib.cnn_face_detection_model_v1(
-    "models/mmod_human_face_detector.dat",
+    "src/models/trained_models/mmod_human_face_detector.dat",
 )
 
 
