@@ -1,0 +1,1 @@
+# This script is for comparing different type of models
