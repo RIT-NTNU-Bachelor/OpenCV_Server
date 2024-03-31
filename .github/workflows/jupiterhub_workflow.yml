@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        notebook:  ["test.ipynb"] #['compare_face_detection_accuracy.ipynb', 'compare_face_detection_efficacy.ipynb']
+        notebook:  ["test"] #['compare_face_detection_accuracy.ipynb', 'compare_face_detection_efficacy.ipynb']
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -34,13 +34,11 @@ jobs:
       run: |
         mkdir -p data/results
         # Execute the notebook in-place
-        jupyter nbconvert --to notebook --execute test/${{ matrix.notebook }} --inplace
+        jupyter nbconvert --to notebook --execute test/${{ matrix.notebook }}.ipynb --inplace
         # Convert to HTML
-        HTML_OUTPUT="data/results/$(echo ${{ matrix.notebook }} | sed 's/.ipynb$/.html/')"
-        jupyter nbconvert --to html test/${{ matrix.notebook }} --output $HTML_OUTPUT
+        jupyter nbconvert --to html test/${{ matrix.notebook }} --output data/results/${{ matrix.notebook }}.html
         # Convert to PDF
-        PDF_OUTPUT="data/results/$(echo ${{ matrix.notebook }} | sed 's/.ipynb$/.pdf/')"
-        jupyter nbconvert --to pdf test/${{ matrix.notebook }} --output $PDF_OUTPUT
+        jupyter nbconvert --to pdf test/${{ matrix.notebook }} --output data/results/${{ matrix.notebook }}.pdf
       continue-on-error: true
         
     
