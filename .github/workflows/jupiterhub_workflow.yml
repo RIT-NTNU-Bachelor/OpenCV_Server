@@ -40,11 +40,6 @@ jobs:
         jupyter nbconvert --to notebook --execute test/${{ matrix.notebook }}.ipynb --inplace
         # Convert to HTML
         jupyter nbconvert --to html test/${{ matrix.notebook }}.ipynb --output ${{ matrix.notebook }}.html
-        # Convert to PDF
-        jupyter nbconvert --to pdf test/${{ matrix.notebook }}.ipynb --output ${{ matrix.notebook }}.pdf
-      continue-on-error: true
-        
-    
     - name: Commit results
       if: success()
       run: |
