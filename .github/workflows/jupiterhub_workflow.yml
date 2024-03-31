@@ -28,9 +28,14 @@ jobs:
 
     - name: Download dataset
       run: |
-        # Example command to download dataset
-        curl -o data/test_data/FDDB.zip http://vis-www.cs.umass.edu/fddb/originalPics.tar.gz
-        unzip data/test_data/FDDB.zip -d data/test_data/
+        # Download the dataset with the correct extension
+        curl -L -o data/test_data/originalPics.tar.gz http://vis-www.cs.umass.edu/fddb/originalPics.tar.gz
+        # Create the target directory
+        mkdir -p data/test_data/FDDB
+        # Extract the contents into the target directory
+        tar -xzvf data/test_data/originalPics.tar.gz -C data/test_data/FDDB
+        # Remove the downloaded .tar.gz file
+        rm data/test_data/originalPics.tar.gz
       
   prepare-and-execute-notebooks:
     
