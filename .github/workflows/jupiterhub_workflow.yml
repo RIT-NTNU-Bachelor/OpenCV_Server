@@ -5,8 +5,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup-and-download-dataset:
+  prepare-and-execute-notebooks:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        notebook: ["test"]  #'compare_face_detection_accuracy', 'compare_face_detection_efficacy'
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -36,17 +39,6 @@ jobs:
         tar -xzvf data/test_data/originalPics.tar.gz -C data/test_data/FDDB
         # Remove the downloaded .tar.gz file
         rm data/test_data/originalPics.tar.gz
-      
-  prepare-and-execute-notebooks:
-    
-    needs: setup-and-download-dataset
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        notebook: ["test"]  #'compare_face_detection_accuracy', 'compare_face_detection_efficacy'
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
 
     - name: Execute and convert notebook
       run: |
