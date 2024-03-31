@@ -41,7 +41,7 @@ jobs:
         # Convert to HTML
         jupyter nbconvert --to html test/${{ matrix.notebook }}.ipynb --output test/${{ matrix.notebook }}.html
         # Convert to PDF
-        jupyter nbconvert --to pdf test/${{ matrix.notebook }}.ipynb --output test/results/${{ matrix.notebook }}.pdf
+        jupyter nbconvert --to pdf test/${{ matrix.notebook }}.ipynb --output test/${{ matrix.notebook }}.pdf
       continue-on-error: true
         
     
