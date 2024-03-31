@@ -7,9 +7,6 @@ on:
 jobs:
   prepare-and-execute-notebooks:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        notebook: ["test"]  #'compare_face_detection_accuracy', 'compare_face_detection_efficacy'
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -47,9 +44,11 @@ jobs:
         # Creating the directory for results
         mkdir -p data/results
         # Execute the notebook in-place
-        jupyter nbconvert --to notebook --execute test/${{ matrix.notebook }}.ipynb --inplace
+        jupyter nbconvert --to notebook --execute analysis/compare_face_detection_accuracy.ipynb --inplace
+        jupyter nbconvert --to notebook --execute analysis/compare_face_detection_efficacy.ipynb --inplace
         # Convert to HTML
-        jupyter nbconvert --to html test/${{ matrix.notebook }}.ipynb --output ${{ matrix.notebook }}.html
+        jupyter nbconvert --to html analysis/compare_face_detection_accuracy.ipynb --output compare_face_detection_accuracy.html
+        jupyter nbconvert --to html analysis/compare_face_detection_efficacy.ipynb --output compare_face_detection_efficacy.html
 
     - name: Commit results
       if: success()
