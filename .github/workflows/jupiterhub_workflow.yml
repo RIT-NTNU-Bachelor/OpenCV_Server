@@ -46,10 +46,7 @@ jobs:
         # Execute the notebook in-place
         jupyter nbconvert --to notebook --execute analysis/compare_face_detection_accuracy.ipynb --inplace
         jupyter nbconvert --to notebook --execute analysis/compare_face_detection_efficacy.ipynb --inplace
-        # Convert to HTML
-        jupyter nbconvert --to html analysis/compare_face_detection_accuracy.ipynb --output compare_face_detection_accuracy.html
-        jupyter nbconvert --to html analysis/compare_face_detection_efficacy.ipynb --output compare_face_detection_efficacy.html
-
+        
     - name: Commit results
       if: success()
       run: |
