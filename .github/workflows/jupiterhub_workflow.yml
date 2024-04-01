@@ -2,15 +2,11 @@ name: Execute and Convert Notebooks
 
 # Trigger manually 
 on: 
-    workflow_dispatch:
-
+  workflow_dispatch:
 
 jobs:
   prepare-and-execute-notebooks:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        notebook:  ["test.ipynb"] #['compare_face_detection_accuracy.ipynb', 'compare_face_detection_efficacy.ipynb']
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -18,7 +14,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.10' 
+        python-version: '3.10'
         
     - name: Create and activate virtual environment
       run: |
@@ -29,40 +25,43 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        
+
+    - name: Download dataset
+      run: |
+        # Download the dataset with the correct extension
+        curl -L -o data/test_data/originalPics.tar.gz http://vis-www.cs.umass.edu/fddb/originalPics.tar.gz
+        # Create the target directory
+        mkdir -p data/test_data/FDDB
+        # Extract the contents into the target directory
+        tar -xzvf data/test_data/originalPics.tar.gz -C data/test_data/FDDB
+        # Remove the downloaded .tar.gz file
+        rm data/test_data/originalPics.tar.gz
+
     - name: Execute and convert notebook
       run: |
+        # CD to correct directory
+        cd ${{ github.workspace }}
+        # Creating the directory for results
         mkdir -p data/results
         # Execute the notebook in-place
-        jupyter nbconvert --to notebook --execute test/${{ matrix.notebook }} --inplace
+        jupyter nbconvert --to notebook --execute analysis/compare_face_detection_accuracy.ipynb --inplace
+        jupyter nbconvert --to notebook --execute analysis/compare_face_detection_efficacy.ipynb --inplace
         # Convert to HTML
-        HTML_OUTPUT="data/results/$(echo ${{ matrix.notebook }} | sed 's/.ipynb$/.html/')"
-        jupyter nbconvert --to html test/${{ matrix.notebook }} --output $HTML_OUTPUT
-        # Convert to PDF
-        PDF_OUTPUT="data/results/$(echo ${{ matrix.notebook }} | sed 's/.ipynb$/.pdf/')"
-        jupyter nbconvert --to pdf test/${{ matrix.notebook }} --output $PDF_OUTPUT
-      continue-on-error: true
-        
-    
+        jupyter nbconvert --to html analysis/compare_face_detection_accuracy.ipynb --output compare_face_detection_accuracy.html
+        jupyter nbconvert --to html analysis/compare_face_detection_efficacy.ipynb --output compare_face_detection_efficacy.html
+
     - name: Commit results
       if: success()
       run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
+          # Ensure we're on a branch that's not main to avoid direct commits
           git checkout -b update-notebooks-${{ github.run_id }}
           git add .
           git commit -m "Automated notebook execution and conversion"
-          # Set up Git to use the GitHub token for authentication
-          git -c http.extraheader="AUTHORIZATION: bearer ${{ secrets.GITHUB_TOKEN }}" push origin update-notebooks-${{ github.run_id }}
-    
+          # Push the changes to the new branch
+          git push -u origin update-notebooks-${{ github.run_id }}
 
-  open-pull-request:
-    needs: prepare-and-execute-notebooks
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      
     - name: Open Pull Request
       uses: repo-sync/pull-request@v2
       with:
@@ -70,4 +69,4 @@ jobs:
         pr_title: "Automated Notebook Update"
         pr_body: "This PR includes executed notebooks and their conversions."
         source_branch: "update-notebooks-${{ github.run_id }}"
-        destination_branch: "main" 
+        destination_branch: "main"
