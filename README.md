@@ -38,6 +38,14 @@ The main file is structured in a way to make it easy to change what face detecti
 # TODO: Add clean code of main.py when finished
 ```
 
+## System Description
+
+The system consists of two primary components: the Face Tracking server and the Rendering Engine Client. The Face Tracking Server uses OpenCV to process frames in real-time. For each frame, it detects the position of the face. Once the position is ascertained, these coordinates are sent using the UDP (User Datagram Protocol) to ensure fast and efficient transmission. The Rendering Engine Client then takes over by parsing the received coordinates. Using this data, the engine re-renders the scene to align with the new position of the face. This cycle of detection, transmission, and rendering continues seamlessly with each frame, allowing for a responsive and dynamic integration of face tracking data with the rendered content: 
+
+![image](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/e2904d2e-a90d-46f7-8c5d-080a23d87038)
+
+
+
 ## Extra: Case Studies
 
 For deciding the best face detection algorithm for the thesis, see the case studies created in the `analysis/` folder (created in JupyterHub files). The two main factors for a real-time face detection system is efficacy and accuracy. These factors was also discussed, and agreed upon with the bachelor thesis client. There are two case studies
