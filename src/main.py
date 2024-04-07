@@ -3,9 +3,13 @@ import socket
 import time
 import cvzone
 from cvzone.FaceMeshModule import FaceMeshDetector
+from udp_server import send_udp_data
 
 frame_rate = 45
 prev = 0
+
+
+# Setup for the information for the UDP server. 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 serverAddressPort = ('127.0.0.1', 5052)
 
@@ -44,12 +48,8 @@ while True:
                                (face[10][0] - 100, face[10][1] - 50),
                                scale=2)
 
-            # Send data
-            data = str.encode(str(faceCoordinatesXYZ))
-            print(data)
-            sock.sendto(data, serverAddressPort)
+            # Send data using UDP
+            send_udp_data(sock, serverAddressPort, faceCoordinatesXYZ, log=True)
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)
-
-
