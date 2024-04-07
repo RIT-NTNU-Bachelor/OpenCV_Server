@@ -1,44 +1,51 @@
 import cv2
+import numpy as np
 
-def detect_face_haar(img,detectMultipleFaces=False, scale=1.1, neighbors=10, size=50):
-    """Detect a face in an image using a pre-trained Haar Cascasde model. 
+def detect_face_haar(img: np.ndarray, detector: cv2.CascadeClassifier, detectMultipleFaces: bool = True, scale: float = 1.1, neighbors: int = 10, size: int = 50):
+    """
+    Function for detecting faces in an image using a pre-trained Haar Cascade model provided by OpenCV.
+    This project uses the "haarcascade_frontalface_default.xml" model, but the function allows for other cascade classifier.
+    Default values for scaling, neighbors and size of the window are set. 
 
-    The model has been trained by OpenCV.
-    See: https://opencv.org/
+    By default the detector will detect multiple faces. Set "detectMultipleFaces" to false for detecting one face. 
+
+    See OpenCV documentation for more information: 
+    https://opencv.org/
+
+    Scale, neighbors and size are also explained documentation: 
+    https://docs.opencv.org/3.4/d1/de5/classcv_1_1CascadeClassifier.html 
 
     Args:
-        img (numpy.ndarray): 
-            Image read from the cv2.imgread function. Ut is a numpy
-        detectMultipleFaces (boolean): 
-            Toggle for returning more than one face detected. Default is false. 
-        scale (float, optional): 
-            For scaling down the input image, before trying to detect a face. Makes it easier to detect a face with smaller scale. Defaults to 1.1.
-        neighbors (int, optional): 
-            Amount of neighbour rectangles needed for a face to be set as detected. Defaults to 10.
-        size (int, optional): 
-            Size of the sliding window that checks for any facial features. Should match the face size in the image, that should be detected. Defaults to 50.
+        img (np.ndarray): 
+            The image in which to detect face. Retrieved by OpenCVs imread function.  
+        detector (cv2.CascadeClassifier): 
+            An instance of the Haar Cascade detector, pre-trained for face detection.
+        detectMultipleFaces (bool): 
+            Will return multiple faces if true, else only one. Default is set to true. 
+        scale (float): 
+            Factor by which the image is scaled down to facilitate detection. Default is 1.1, which means scaling it down by 10 percent.
+        neighbors (int): The number of neighbors each candidate rectangle should have to retain it. Defaults to 10.
+        size (int): The minimum size of faces to detect, specified as the side length of the square
+                    sliding window used in detection. Defaults to 50 pixels.
 
     Returns:
-        Rect: Datatype of a rectangle, that overlays the position of the detected face. It has four attributes of intrests: x-position, y-position, 
-    """
+        Depending on if detectMultipleFaces is true:
+        - A list of tuples (x, y, width, height) for each detected face, or
+        - A single tuple (x, y, width, height) for the most prominent face, or
+        - None, if no faces are detected.
 
-    # Turing the image into a grayscale image
+    Each tuple contains the coordinates of the top left corner and the dimensions of the bounding box.
+    """
+    # Convert the image to a grayscale image to simplify detection
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Printing the gray scale image
-    # print(f"Gray-Scale Image dimension: ({gray_image.shape})")
-
-    # Loading the classifier from a pretrained dataset
-    face_classifier = cv2.CascadeClassifier(
-        cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+    # Perform face detection
+    faces = detector.detectMultiScale(
+        gray_image, scaleFactor=scale, minNeighbors=neighbors, minSize=(size, size)
     )
 
-    # Performing the face detection
-    faces = face_classifier.detectMultiScale(
-        gray_image, scaleFactor=scale, minNeighbors=neighbors, minSize=(size,size)
-    )
-
-    # Return amount of 
-    if detectMultipleFaces == True:
+    # Return either multiple faces or the most prominent one
+    if detectMultipleFaces:
         return faces
-    return faces[0]
+    else:
+        return faces[0] if len(faces) > 0 else None

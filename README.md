@@ -24,6 +24,7 @@ This project implements a server application using OpenCV for real-time face tra
 **[Requirements](#Requirements)**<br>
 **[Installation](#Installation)**<br>
 **[Usage](#Usage)**<br>
+**[Example Code](#Example-Code)**<br>
 **[System Description](#System-Description)**<br>
 **[Case Studies](#Case-Studies)**<br>
 **[License](#License)**<br>
@@ -61,10 +62,44 @@ Every face detection algorithm has the same function signature. They differ only
 def detect_face_xxx(img, ... , detectMultipleFaces=False):
 ```
 
-The main file is structured in a way to make it easy to change what face detection algorithm is being used
+The main file is structured in a way to make it easy to change what face detection algorithm is being used. Run the main file with the following command: 
+
+```terminal
+python src/main.py
+```
+
+### Example Code
+This repository uses a modular design for all the face detection modules. This makes it easy to change the code and switch between models. The file in `./example/` includes example code for testing. Replace the `image_path` with the desired image path. Here is the code snippet from `example_detect_from_image.py`:
 
 ```python
-# TODO: Add clean code of main.py when finished
+# Import OpenCV for reading image
+import cv2
+
+# Importing the functions for the face detection models 
+from models.code.dnn import detect_face_dnn
+from models.code.haar import detect_face_haar
+from models.code.hog import detect_face_hog
+from models.code.cvzone import detect_face_cvzone
+
+# Import the detectors from src/constants.py
+from constants import DNN_NET, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR
+
+# Opening a sample image
+image_path = "path/to/your/image.jpg"
+img = cv2.imread(image_path)
+
+# Example of using a method to detect face models 
+faces_dnn = detect_face_dnn(img, DNN_NET)
+faces_haar = detect_face_haar(img, HAAR_CLASSIFIER)
+faces_hog = detect_face_hog(img, HOG_DETECTOR)
+faces_cvzone = detect_face_cvzone(img, CVZONE_DETECTOR_MAX_ONE)
+
+# Print the amount of faces found within the image
+print(f"DNN Detected Faces: {faces_dnn}")
+print(f"Haar Detected Faces: {faces_haar}")
+print(f"HOG Detected Faces: {faces_hog}")
+
+
 ```
 
 
