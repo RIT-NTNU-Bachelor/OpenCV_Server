@@ -4,8 +4,8 @@ from cvzone.FaceMeshModule import FaceMeshDetector # Import for CVZone
 
 
 # Constants for the DNN model
-DNN_CAFFE_MODEL_PATH = "../src/models/trained_models/res10_300x300_ssd_iter_140000_fp16.caffemodel"
-DNN_CONFIG_PATH = "../src/models/trained_models/deploy.prototxt"
+DNN_CAFFE_MODEL_PATH = "./src/models/trained_models/res10_300x300_ssd_iter_140000_fp16.caffemodel"
+DNN_CONFIG_PATH = "./src/models/trained_models/deploy.prototxt"
 DNN_NET = cv2.dnn.readNetFromCaffe(DNN_CONFIG_PATH, DNN_CAFFE_MODEL_PATH)
 
 # Constants for Haar
