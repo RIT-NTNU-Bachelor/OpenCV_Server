@@ -29,9 +29,12 @@ def detect_face_haar(img: np.ndarray, detector: cv2.CascadeClassifier, detectMul
                     sliding window used in detection. Defaults to 50 pixels.
 
     Returns:
-        If detectMultipleFaces is True, returns a numpy ndarray of rectangles, where each rectangle,
-        represented as (x, y, width, height), corresponds to a detected face. If False, returns a single
-        tuple (x, y, width, height) for the most prominent face, or None if no face is detected.
+        Depending on if detectMultipleFaces is true:
+        - A list of tuples (x, y, width, height) for each detected face, or
+        - A single tuple (x, y, width, height) for the most prominent face, or
+        - None, if no faces are detected.
+
+    Each tuple contains the coordinates of the top left corner and the dimensions of the bounding box.
     """
     # Convert the image to a grayscale image to simplify detection
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
