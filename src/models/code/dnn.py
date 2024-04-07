@@ -1,10 +1,14 @@
 import cv2
 import numpy as np
 
-def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe", conf_threshold: float = 0.7, detectMultipleFaces: bool = False) -> Union[List[Tuple[int, int, int, int]], Tuple[int, int, int, int], None]:
+# TODO: FIX DOCS
+
+def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe", conf_threshold: float = 0.7, detectMultipleFaces: bool = False):
     """
     Function that detects faces in an image using a Deep Neural Network (DNN) model. The function supports models trained
     with either the Caffe or TensorFlow framework. The default model is ....
+
+    ADD LINKS TO DOCS 
 
     Args:
         img (np.ndarray): The input image in which faces are to be detected. It should be in the format

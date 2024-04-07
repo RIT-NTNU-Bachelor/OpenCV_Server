@@ -1,5 +1,7 @@
 import cv2
 
+# TODO: Delete or fix 
+
 def detect_face_mmod(img, detector, inHeight=300, inWidth=0, detectMultipleFaces=False):
     """
     Detect faces in an image using the dlib MMOD detector.
