@@ -41,7 +41,7 @@ def main():
             d = int((W * f) / w)
 
             # Append z-coordinates.
-            faceCenter[0] = max(faceCenter[0] // 5, 0)
+            faceCenter[0] = faceCenter[0] 
 
             faceCoordinatesXYZ = faceCenter
             faceCoordinatesXYZ.append(d)
