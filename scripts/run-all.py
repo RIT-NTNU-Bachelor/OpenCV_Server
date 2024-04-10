@@ -6,7 +6,7 @@ import dlib
 import numpy as np
 
 # This script is inspired by learnopencv's script located at:
-# https://github.com/spmallick/learnopencv/blob/master/FaceDetectionComparison/run-all.cpp
+# https://github.com/spmallick/learnopencv/blob/master/FaceDetectionComparison/run-all.py
 
 # Load models
 face_cascade = cv2.CascadeClassifier("../src/models/trained_models/haarcascade_frontalface_default.xml")
