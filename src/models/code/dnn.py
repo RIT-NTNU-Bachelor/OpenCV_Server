@@ -8,16 +8,16 @@ def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe",
 
     Args
     ----------
-        img (np.ndarray): The input image in which faces are to be detected. It should be in the format
+    img (np.ndarray): The input image in which faces are to be detected. It should be in the format
                           acceptable by OpenCV, typically a numpy ndarray obtained from cv2.imread.
-        net (cv2.dnn_Net): The pre-trained DNN model loaded using cv2.dnn.readNet for face detection. For more information
-                           on loading models, refer to: https://docs.opencv.org/master/db/d30/classcv_1_1dnn_1_1Net.html
-        framework (str, optional): Specifies the framework of the pre-trained model. Accepts either 'caffe' or
+    net (cv2.dnn_Net): The pre-trained DNN model loaded using cv2.dnn.readNet for face detection. For more information
+                        on loading models, refer to: https://docs.opencv.org/master/db/d30/classcv_1_1dnn_1_1Net.html
+    framework (str, optional): Specifies the framework of the pre-trained model. Accepts either 'caffe' or
                          'tensorflow'. Defaults to 'caffe'.
-        conf_threshold (float, optional): The minimum confidence level for a detection to be considered a face.
+    conf_threshold (float, optional): The minimum confidence level for a detection to be considered a face.
                                 Ranges between 0 and 1, with a higher threshold resulting in fewer
                                 detections but with increased reliability. Defaults to 0.7.
-        detectMultipleFaces (bool, optional): If True, detects and returns bounding boxes for all faces found in
+    detectMultipleFaces (bool, optional): If True, detects and returns bounding boxes for all faces found in
                                     the image. If False, returns the bounding box for the
 
 
@@ -35,6 +35,8 @@ def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe",
     - Caffe models: https://caffe.berkeleyvision.org/
     - TensorFlow models: https://www.tensorflow.org/
     """
+
+    # Get the dimensions of the input image
     frameHeight = img.shape[0]
     frameWidth = img.shape[1]
 
