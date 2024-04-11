@@ -1,27 +1,28 @@
 import cv2
 import numpy as np
 
-# TODO: FIX DOCS
-
 def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe", conf_threshold: float = 0.7, detectMultipleFaces: bool = False):
     """
     Function that detects faces in an image using a Deep Neural Network (DNN) model. The function supports models trained
-    with either the Caffe or TensorFlow framework. The default model is ....
+    with either the Caffe or TensorFlow framework. For more information on using DNN in OpenCV, refer to the official
+    documentation: https://docs.opencv.org/master/d6/d0f/group__dnn.html
 
-    ADD LINKS TO DOCS 
+    Reference for Caffe models: https://caffe.berkeleyvision.org/
+    Reference for TensorFlow models: https://www.tensorflow.org/
 
     Args:
         img (np.ndarray): The input image in which faces are to be detected. It should be in the format
                           acceptable by OpenCV, typically a numpy ndarray obtained from cv2.imread.
-        net (cv2.dnn_Net): The pre-trained DNN model loaded using cv2.dnn.readNet for face detection.
+        net (cv2.dnn_Net): The pre-trained DNN model loaded using cv2.dnn.readNet for face detection. For more information
+                           on loading models, refer to: https://docs.opencv.org/master/db/d30/classcv_1_1dnn_1_1Net.html
         framework (str): Specifies the framework of the pre-trained model. Accepts either 'caffe' or
                          'tensorflow'. Defaults to 'caffe'.
         conf_threshold (float): The minimum confidence level for a detection to be considered a face.
                                 Ranges between 0 and 1, with a higher threshold resulting in fewer
                                 detections but with increased reliability. Defaults to 0.7.
         detectMultipleFaces (bool): If True, detects and returns bounding boxes for all faces found in
-                                    the image. If False, returns the bounding box for the most prominent
-                                    face or None if no face is detected. Defaults to False.
+                                    the image. If False, returns the bounding box for the
+
 
     Returns:
         Depending on if detectMultipleFaces is true:
