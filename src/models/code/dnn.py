@@ -4,33 +4,36 @@ import numpy as np
 def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe", conf_threshold: float = 0.7, detectMultipleFaces: bool = False):
     """
     Function that detects faces in an image using a Deep Neural Network (DNN) model. The function supports models trained
-    with either the Caffe or TensorFlow framework. For more information on using DNN in OpenCV, refer to the official
-    documentation: https://docs.opencv.org/master/d6/d0f/group__dnn.html
+    with either the Caffe or TensorFlow framework.
 
-    Reference for Caffe models: https://caffe.berkeleyvision.org/
-    Reference for TensorFlow models: https://www.tensorflow.org/
-
-    Args:
+    Args
+    ----------
         img (np.ndarray): The input image in which faces are to be detected. It should be in the format
                           acceptable by OpenCV, typically a numpy ndarray obtained from cv2.imread.
         net (cv2.dnn_Net): The pre-trained DNN model loaded using cv2.dnn.readNet for face detection. For more information
                            on loading models, refer to: https://docs.opencv.org/master/db/d30/classcv_1_1dnn_1_1Net.html
-        framework (str): Specifies the framework of the pre-trained model. Accepts either 'caffe' or
+        framework (str, optional): Specifies the framework of the pre-trained model. Accepts either 'caffe' or
                          'tensorflow'. Defaults to 'caffe'.
-        conf_threshold (float): The minimum confidence level for a detection to be considered a face.
+        conf_threshold (float, optional): The minimum confidence level for a detection to be considered a face.
                                 Ranges between 0 and 1, with a higher threshold resulting in fewer
                                 detections but with increased reliability. Defaults to 0.7.
-        detectMultipleFaces (bool): If True, detects and returns bounding boxes for all faces found in
+        detectMultipleFaces (bool, optional): If True, detects and returns bounding boxes for all faces found in
                                     the image. If False, returns the bounding box for the
 
 
-    Returns:
-        Depending on if detectMultipleFaces is true:
-        - A list of tuples (x, y, width, height) for each detected face, or
-        - A single tuple (x, y, width, height) for the most prominent face, or
-        - None, if no faces are detected.
+    Returns
+    -------
+    list or tuple or None
+        Depending on the value of detectMultipleFaces:
+        - If True, returns a list of tuples (x, y, width, height) for each detected face.
+        - If False, returns a single tuple (x, y, width, height) for the most prominent face, or None if no faces are detected.
+        - Each tuple contains the coordinates of the top-left corner and the dimensions of the bounding box.
 
-    Each tuple contains the coordinates of the top left corner and the dimensions of the bounding box.
+     References
+    ----------
+    - OpenCV DNN documentation: https://docs.opencv.org/master/d6/d0f/group__dnn.html
+    - Caffe models: https://caffe.berkeleyvision.org/
+    - TensorFlow models: https://www.tensorflow.org/
     """
     frameHeight = img.shape[0]
     frameWidth = img.shape[1]
