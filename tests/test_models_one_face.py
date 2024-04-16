@@ -20,7 +20,7 @@ from models.code.dnn import detect_face_dnn
 from models.code.cvzone import detect_face_cvzone
 
 # If this gives an error, the requirements.txt has not been correctly installed
-from constants.model_constants import CVZONE_DETECTOR, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET
+from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET
 
 # Path to the image with one clear face
 # All models should be able to detect the face in the image 
@@ -29,9 +29,13 @@ from constants.model_constants import CVZONE_DETECTOR, CVZONE_DETECTOR_MAX_ONE, 
 path_to_face_image = "data/test_data/unit_test/Lenna.png"
 
 
+# The test class 
 class TestModelsWithOneFace(unittest.TestCase):
 
-    # Setting up the test unit before each test
+    # Setting up the test unit before each test. 
+    # The setup is called once when the test class is set up
+    # The same image is used for all test cases 
+    @classmethod
     def setUp(self):
         self.image = cv2.imread(path_to_face_image)
 
@@ -47,7 +51,11 @@ class TestModelsWithOneFace(unittest.TestCase):
     # Testing with HOG detector 
     def test_hog_one_face(self):
         faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=False)
-        self.assertEqual(len(faces),1)
+        self.assertIsNotNone(faces,"ERROR: HOG model did not find the face in the test with one face")
+
+        # Check that the detected 'faces' variable is a tuple of length 4 (x, y, width, height)
+        self.assertIsInstance(faces, tuple, "ERROR: HOG model output should be a tuple")
+        self.assertEqual(len(faces), 4, "The detected face tuple should have four elements (x, y, width, height)")
 
     # Testing with DNN detector 
     def test_dnn_one_face(self):
@@ -58,10 +66,6 @@ class TestModelsWithOneFace(unittest.TestCase):
     def test_cvzone_one_face(self):
         faces = detect_face_cvzone(self.image, CVZONE_DETECTOR_MAX_ONE, detectMultipleFaces=False)
         self.assertEqual(len(faces),1)
-
-
-
-
 
 
 

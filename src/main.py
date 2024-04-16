@@ -1,7 +1,6 @@
 import cv2
 import socket
 import cvzone
-from cvzone.FaceMeshModule import FaceMeshDetector
 
 # Importing the UDP Function for transmitting data
 from udp_server import send_udp_data

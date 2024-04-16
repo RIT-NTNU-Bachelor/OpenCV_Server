@@ -1,6 +1,15 @@
 # Importing the unit tests package 
 import unittest
 
+# For testing we need to move within the src folder to find the module
+import os
+import sys
+
+# Adjust the path to include the directory where modules module is located
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.join(current_dir, '../src')  
+sys.path.insert(0, parent_dir)
+
 # If this gives an error, the requirements.txt has not been correctly installed
 from constants.model_constants import CVZONE_DETECTOR, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET
 
