@@ -41,7 +41,7 @@ def main():
             faceCenter = face[1]
 
             # Try to estimate the distance, ignore if not found.
-            d = get_z_estimation()
+            d = get_z_estimation(face)
             if d == None:
                 continue
 
