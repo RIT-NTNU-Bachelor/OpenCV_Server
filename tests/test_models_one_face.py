@@ -4,6 +4,9 @@ import unittest
 # Importing the OpenCV library for reading an image
 import cv2
 
+# Import dlib library
+import dlib
+
 # Setup the correct path 
 from tests.test_utils import set_project_path_for_tests
 set_project_path_for_tests()
@@ -41,16 +44,23 @@ class TestModelsWithOneFace(unittest.TestCase):
     # Test with Haar face detection model 
     def test_haar_one_face(self):
         faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detectMultipleFaces=False)
-        self.assertEqual(len(faces),1)
+        self.assertEqual(len(faces),1, "ERROR: Har model did not find the face in the test with one face")
 
     # Testing with HOG detector 
     def test_hog_one_face(self):
         faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=False)
         self.assertIsNotNone(faces,"ERROR: HOG model did not find the face in the test with one face")
 
-        # Check that the detected 'faces' variable is a tuple of length 4 (x, y, width, height)
-        self.assertIsInstance(faces, tuple, "ERROR: HOG model output should be a tuple")
-        self.assertEqual(len(faces), 4, "The detected face tuple should have four elements (x, y, width, height)")
+        # Check that the detected 'faces' variable is a rectangle of length 4 (x, y, width, height)
+        self.assertIsInstance(faces, dlib.rectangle, "ERROR: HOG model output should be a dlib rectangle")
+
+        # Check that the boundary box is of a certain width and height
+        # Using a range to check that the bounding box
+        # This is because the box might change slightly position for each iteration 
+        self.assertGreater(faces.width(), 30)
+        self.assertLess(faces.width(), 160)
+        self.assertGreater(faces.height(), 30)
+        self.assertLess(faces.height(), 160)
 
     # Testing with DNN detector 
     def test_dnn_one_face(self):
