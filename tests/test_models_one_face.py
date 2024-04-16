@@ -4,14 +4,9 @@ import unittest
 # Importing the OpenCV library for reading an image
 import cv2
 
-# For testing we need to move within the src folder to find the module
-import os
-import sys
-
-# Adjust the path to include the directory where modules module is located
-current_dir = os.path.dirname(__file__)
-parent_dir = os.path.join(current_dir, '../src')  
-sys.path.insert(0, parent_dir)
+# Setup the correct path 
+from tests.test_utils import set_project_path_for_tests
+set_project_path_for_tests()
 
 # Import the source code for the all of the models 
 from models.code.haar import detect_face_haar
