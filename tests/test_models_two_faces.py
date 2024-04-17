@@ -11,7 +11,7 @@ import dlib
 import numpy as np
 
 # Setup the correct path 
-from tests.test_utils import set_project_path_for_tests
+from tests.test_utils import set_project_path_for_tests, save_test
 set_project_path_for_tests()
 
 # Import the source code for the all of the models 
@@ -60,6 +60,9 @@ class TestModelsWithTwoFaces(unittest.TestCase):
             self.assertIsInstance(face, np.ndarray, "ERROR: A face was not a numpy array")
             self.assertEqual(len(face), 4, "ERROR: A face did not have the four properties expected in the numpy array")
 
+        # Saving the result to an image
+        save_test(self.image,"haar_two_faces_output.png", faces)
+
     # Testing with HOG detector 
     def test_hog_two_faces(self):
         faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=True)
@@ -79,6 +82,9 @@ class TestModelsWithTwoFaces(unittest.TestCase):
             self.assertIsNotNone(face.width())
             self.assertIsNotNone(face.height())
 
+        # Saving the result to an image
+        save_test(self.image,"hog_two_faces_output.png", faces)
+
 
     # Testing with DNN detector 
     def test_dnn_two_faces(self):
@@ -96,6 +102,9 @@ class TestModelsWithTwoFaces(unittest.TestCase):
             self.assertIsInstance(face, tuple, "ERROR: A face was not a tuple")
             self.assertEqual(len(face), 4, "ERROR: A face did not have the four properties expected in the rectangle")
 
+        # Saving the result to an image
+        save_test(self.image,"dnn_two_faces_output.png", faces)
+
     # Testing with CVZone detector 
     def test_cvzone_two_faces(self):
         faces = detect_face_cvzone(self.image, CVZONE_DETECTOR, detectMultipleFaces=True)
@@ -111,6 +120,9 @@ class TestModelsWithTwoFaces(unittest.TestCase):
         for face in faces: 
             self.assertIsInstance(face, list, "ERROR: A face was not a list of the expected landmarks")
             self.assertEqual(len(face), 468, "ERROR: A face did not have the 468 landmarks expected")
+
+        # Saving the result to an image
+        save_test(self.image,"cvzone_two_faces_output.png", faces)
 
 # Runs all unit tests within this file 
 if __name__ == '__main__':

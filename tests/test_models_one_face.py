@@ -11,7 +11,7 @@ import dlib
 import numpy as np
 
 # Setup the correct path 
-from tests.test_utils import set_project_path_for_tests
+from tests.test_utils import set_project_path_for_tests, save_test
 set_project_path_for_tests()
 
 # Import the source code for the all of the models 
@@ -71,6 +71,9 @@ class TestModelsWithOneFace(unittest.TestCase):
         self.assertGreater(y, 190)
         self.assertLess(y, 215)
 
+        # Saving the result to an image
+        save_test(self.image,"haar_one_face_output.png", faces)
+
 
     # Testing with HOG detector 
     def test_hog_one_face(self):
@@ -87,6 +90,9 @@ class TestModelsWithOneFace(unittest.TestCase):
         self.assertLess(faces.width(), 160)
         self.assertGreater(faces.height(), 30)
         self.assertLess(faces.height(), 160)
+
+        # Saving the result to an image
+        save_test(self.image,"hog_one_face_output.png", faces)
 
     # Testing with DNN detector 
     def test_dnn_one_face(self):
@@ -114,6 +120,9 @@ class TestModelsWithOneFace(unittest.TestCase):
         self.assertLess(x, 220)
         self.assertGreater(y, 170)
         self.assertLess(y, 215)
+
+        # Saving the result to an image
+        save_test(self.image,"dnn_one_face_output.png", faces)
 
     # Testing with CVZone detector 
     def test_cvzone_one_face(self):
@@ -156,6 +165,10 @@ class TestModelsWithOneFace(unittest.TestCase):
         self.assertGreaterEqual(rightEyeY, leftEyeY - tolerance, "ERROR: Right eye is too low compared to the left eye")
         self.assertLessEqual(leftEyeY, rightEyeY + tolerance, "ERROR: Left eye is too high compared to the right eye")
         self.assertGreaterEqual(leftEyeY, rightEyeY - tolerance, "ERROR: Left eye is too low compared to the right eye")
+
+
+        # Saving the result to an image
+        save_test(self.image,"cvzone_one_face_output.png", faces)
 
 
 # Runs all unit tests within this file 
