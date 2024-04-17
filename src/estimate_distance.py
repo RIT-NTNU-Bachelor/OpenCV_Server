@@ -1,4 +1,5 @@
-from constants import CVZONE_DETECTOR_MAX_ONE, EYE_DISTANCE_INDEX, FOCAL_LENGTH, INTEROCULAR_DISTANCE
+from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, EYE_DISTANCE_INDEX
+from constants.config_constants import FOCAL_LENGTH, INTEROCULAR_DISTANCE
 
 
 def get_z_estimation(face):

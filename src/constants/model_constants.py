@@ -18,16 +18,9 @@ HOG_DETECTOR = dlib.get_frontal_face_detector()
 CVZONE_DETECTOR = FaceMeshDetector()
 CVZONE_DETECTOR_MAX_ONE = FaceMeshDetector(maxFaces=1)
 
-
 # CVZone has a set constant for the eye indexes 
 EYE_DISTANCE_INDEX = {
     'left_eye': 145,
     'right_eye': 374
 }
 
-# Average distance between human eyes is 63 mm. 
-# This is 6.3 cm. 
-INTEROCULAR_DISTANCE = 6.3  
-
-# Focal length of the camera in use
-FOCAL_LENGTH = 655 

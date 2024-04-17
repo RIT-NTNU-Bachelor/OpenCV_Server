@@ -8,7 +8,7 @@ from models.code.hog import detect_face_hog
 from models.code.cvzone import detect_face_cvzone
 
 # Import the detectors from src/constants.py
-from constants import DNN_NET, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR
+from constants.model_constants import DNN_NET, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR
 
 # Opening a sample image
 image_path = "path/to/your/image.jpg"

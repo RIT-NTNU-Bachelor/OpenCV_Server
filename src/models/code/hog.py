@@ -20,12 +20,13 @@ def detect_face_hog(img: np.ndarray, detector, detectMultipleFaces: bool = False
             Will return multiple faces if true, else only one. Default is set to true. 
 
     Returns:
-        Depending on if detectMultipleFaces is true:
-        - A list of tuples (x, y, width, height) for each detected face, or
-        - A single tuple (x, y, width, height) for the most prominent face, or
-        - None, if no faces are detected.
+        faces (dlib.rectangle | dlib.rectangle[])
+            Depending on if detectMultipleFaces is true:
+            - A list of tuples (x, y, width, height) for each detected face, or
+            - A single tuple (x, y, width, height) for the most prominent face, or
+            - None, if no faces are detected.
 
-        Each tuple contains the coordinates of the top left corner and the dimensions of the bounding box.
+            Each tuple contains the coordinates of the top left corner and the dimensions of the bounding box.
     """
     # Convert the image to grayscale to simplify the detection process
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

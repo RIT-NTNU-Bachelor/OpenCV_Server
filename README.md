@@ -24,6 +24,7 @@ This project implements a server application using OpenCV for real-time face tra
 **[Requirements](#Requirements)**<br>
 **[Installation](#Installation)**<br>
 **[Usage](#Usage)**<br>
+**[Unit testing](#Unit-testing)**<br>
 **[Example Code](#Example-Code)**<br>
 **[System Description](#System-Description)**<br>
 **[Case Studies](#Case-Studies)**<br>
@@ -66,6 +67,21 @@ The main file is structured in a way to make it easy to change what face detecti
 
 ```terminal
 python src/main.py
+```
+
+
+### Unit testing
+
+This repository includes unit test for testing the different algorithms. The following are tested: 
+- All models are loaded correctly from the dependencies.
+- All models does not find a face in a image without a face 
+- All models finds the single face in a image
+- All models finds both faces in a image  
+
+To run all unit tests, simply run:
+
+```terminal
+python -m unittest -v
 ```
 
 ### Example Code
