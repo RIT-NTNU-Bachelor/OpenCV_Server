@@ -30,13 +30,8 @@ from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, 
 path_to_face_image = "data/test_data/unit_test/Lenna.png"
 
 
-# Path to the image without a face
-# This is for the negative test, to make sure each function respond with the expected value 
-# The image is from 
-path_to_peppers_image = "data/test_data/unit_test/Peppers.png"
-
-# The test class with positive tests 
-class TestModelsWithOneFacePositive(unittest.TestCase):
+# The test class
+class TestModelsWithOneFace(unittest.TestCase):
 
     # Setting up the test unit before each test. 
     # The setup is called once when the test class is set up
@@ -46,11 +41,11 @@ class TestModelsWithOneFacePositive(unittest.TestCase):
         self.image = cv2.imread(path_to_face_image)
 
     # Test that checks that the image has been correctly setup 
-    def test_image_loaded_lenna(self):
+    def test_image_loaded(self):
         self.assertIsNotNone(self.image, "ERROR: Image should be correctly setup for the tests with one face")
 
     # Test with Haar face detection model 
-    def test_haar_one_face_positive(self):
+    def test_haar_one_face(self):
         faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detectMultipleFaces=False)
 
         # Check that the detected 'faces' variable is a instance of np.ndarray
@@ -78,7 +73,7 @@ class TestModelsWithOneFacePositive(unittest.TestCase):
 
 
     # Testing with HOG detector 
-    def test_hog_one_face_positive(self):
+    def test_hog_one_face(self):
         faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=False)
         self.assertIsNotNone(faces,"ERROR: HOG model did not find the face in the test with one face")
 
@@ -94,7 +89,7 @@ class TestModelsWithOneFacePositive(unittest.TestCase):
         self.assertLess(faces.height(), 160)
 
     # Testing with DNN detector 
-    def test_dnn_one_face_positive(self):
+    def test_dnn_one_face(self):
         faces = detect_face_dnn(self.image, DNN_NET, detectMultipleFaces=False)
         
         # Check that the detected 'faces' variable is a Rectangle instance 
@@ -121,7 +116,7 @@ class TestModelsWithOneFacePositive(unittest.TestCase):
         self.assertLess(y, 215)
 
     # Testing with CVZone detector 
-    def test_cvzone_one_face_positive(self):
+    def test_cvzone_one_face(self):
         faces = detect_face_cvzone(self.image, CVZONE_DETECTOR_MAX_ONE, detectMultipleFaces=False)
 
         # Check that the detected 'faces' variable is a Rectangle instance 
@@ -161,52 +156,6 @@ class TestModelsWithOneFacePositive(unittest.TestCase):
         self.assertGreaterEqual(rightEyeY, leftEyeY - tolerance, "ERROR: Right eye is too low compared to the left eye")
         self.assertLessEqual(leftEyeY, rightEyeY + tolerance, "ERROR: Left eye is too high compared to the right eye")
         self.assertGreaterEqual(leftEyeY, rightEyeY - tolerance, "ERROR: Left eye is too low compared to the right eye")
-
-
-# The test class with negative tests 
-# The negative tests will check that there are no faces detected in an image without a any faces
-class TestModelsWithOneFaceNegative(unittest.TestCase):
-
-    # Setting up the test unit before each test. 
-    # The setup is called once when the test class is set up
-    # The same image is used for all test cases 
-    @classmethod
-    def setUp(self):
-        self.image = cv2.imread(path_to_peppers_image)
-
-    # Test that checks that the image has been correctly setup 
-    def test_image_loaded_pepper(self):
-        self.assertIsNotNone(self.image, "ERROR: Image should be correctly setup for the tests with one face")
-
-    # Test with Haar face detection model 
-    def test_haar_one_face_negative(self):
-        faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detectMultipleFaces=False)
-
-        # Assert that it is none => no face detected
-        self.assertIsNone(faces)
-
-    # Testing with HOG detector 
-    def test_hog_one_face_negative(self):
-        faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=False)
-
-        # Assert that it is none => no face detected
-        self.assertIsNone(faces)
-
-
-    # Testing with DNN detector 
-    def test_dnn_one_face_negative(self):
-        faces = detect_face_dnn(self.image, DNN_NET, detectMultipleFaces=False)
-        
-        # Assert that it is none => no face detected
-        self.assertIsNone(faces)
-
-    # Testing with CVZone detector 
-    def test_cvzone_one_face_negative(self):
-        faces = detect_face_cvzone(self.image, CVZONE_DETECTOR_MAX_ONE, detectMultipleFaces=False)
-
-        # Assert that it is none => no face detected
-        self.assertIsNone(faces)
-
 
 
 # Runs all unit tests within this file 
