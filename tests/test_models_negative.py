@@ -20,7 +20,7 @@ from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, 
 
 # Path to the image without a face
 # This is for the negative test, to make sure each function respond with the expected value 
-# The image is an image for a pepper 
+# The image is an image of a pepper. It is typically used in image processing. 
 path_to_peppers_image = "data/test_data/unit_test/Peppers.png"
 
 
