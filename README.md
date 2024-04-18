@@ -89,7 +89,7 @@ python -m unittest -v
 ## Scripts
 
 The repository also contains bash scripts. These scripts simplify the process of setting up, unit test and run the project. 
-Note that this is additional material, and are not required for neither setup, testing and running the project. Each `shell` script can be run by first adding executable permissions to them and run them in the terminal. The following scripts are included:
+Note that this is additional material, and are not required for neither setup, testing and running the project. Each script can be run by first adding executable permissions to them and run them in the terminal. The following scripts are included:
 
 - Run: File `run.sh`
 - Unit test: File `test.sh` 
