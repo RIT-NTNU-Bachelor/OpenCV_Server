@@ -3,4 +3,4 @@
 INTEROCULAR_DISTANCE = 6.3  
 
 # Focal length of the camera in use
-FOCAL_LENGTH = 655 
+FOCAL_LENGTH = 635

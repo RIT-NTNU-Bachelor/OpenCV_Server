@@ -1,4 +1,5 @@
 import os
+from os import walk
 import sys
 import dlib
 import cv2
@@ -6,7 +7,7 @@ import numpy as np
 
 # Constants for the save_test function 
 COLOR = (0, 255, 0) # Color of landmark or boarder
-PARENT_DIR = "data/results/unit_test_output/" # output folder relative to the root folder of the project
+OUTPUT_PARENT_DIR = "data/results/unit_test_output/" # output folder relative to the root folder of the project
 
 
 # Adds the parent 'src' directory to the system path.
@@ -36,7 +37,7 @@ def draw_rectangle_from_dlib(face_rectangle, img_with_box):
 
 # Function that saves the image to the 
 def save_image_to_file(img, file_name):
-    full_path = os.path.join(PARENT_DIR, file_name)
+    full_path = os.path.join(OUTPUT_PARENT_DIR, file_name)
     cv2.imwrite(full_path, img)
 
 # Function for saving test output as a single image
@@ -70,3 +71,20 @@ def save_test(img, file_name, face):
 
     # Save the image to the file 
     save_image_to_file(image_with_box, file_name)
+
+
+# Function for retrieving all images in a given parent folder
+def get_images_from_dataset(path_to_parent_dir):
+    # List of images found and saved
+    images = []
+
+    # Iterate over each file 
+    for (_, _, filenames) in walk(path_to_parent_dir):
+        for file in filenames:
+            full_path = path_to_parent_dir + file.strip()
+            current_image = cv2.imread(full_path)
+            images.append(current_image)
+        break
+
+    return images
+
