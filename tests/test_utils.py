@@ -83,7 +83,10 @@ def get_images_from_dataset(path_to_parent_dir):
         for file in filenames:
             full_path = path_to_parent_dir + file.strip()
             current_image = cv2.imread(full_path)
-            images.append(current_image)
+            image_resized = cv2.resize(current_image, (400, 400), 
+               interpolation = cv2.INTER_LINEAR)
+
+            images.append(image_resized)
         break
 
     return images

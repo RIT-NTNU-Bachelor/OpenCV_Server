@@ -29,15 +29,19 @@ class TestDepthEstimation(unittest.TestCase):
         self.faces_two_meters = get_images_from_dataset(PATH_TO_TWO_METER_DATA)
 
         # Checking that the setup was successful 
-        self.assertEqual(len(self.faces_one_meter), 6)
+        self.assertEqual(len(self.faces_one_meter), 7)
         self.assertEqual(len(self.faces_two_meters), 6)
 
     def test_depth_one_meter(self):
+        count = 0
+
         # For each image evaluate the distance for each image where the participant is one meter away
         for image in self.faces_one_meter:
             # Get the face that said cvzone 
+
             face = detect_face_cvzone(image,CVZONE_DETECTOR_MAX_ONE, detectMultipleFaces=False)
             if face == None:
+                count += 1
                 print("[INFO]: Skipping image")
                 continue
 
@@ -50,6 +54,8 @@ class TestDepthEstimation(unittest.TestCase):
             depth = get_z_estimation(face)
             self.assertIsNotNone(depth, "ERROR: depth was NONE for a image with the ground truth of 1 meter")
             self.assertEqual(depth, 100, "ERROR: depth did not correlate with the ground truth of 1 meter")
+
+        print("Images skipped ", count)
 
 
 
