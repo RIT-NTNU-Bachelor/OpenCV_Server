@@ -6,7 +6,7 @@ from tests.test_utils import set_project_path_for_tests
 set_project_path_for_tests()
 
 # If this gives an error, the requirements.txt has not been correctly installed
-from constants.model_constants import CVZONE_DETECTOR, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET
+from constants.model_constants import CVZONE_DETECTOR, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, MMOD_DETECTOR
 
 class TestLoadModels(unittest.TestCase):
     
@@ -21,6 +21,10 @@ class TestLoadModels(unittest.TestCase):
     # Testing that the DNN model is imported correctly 
     def test_load_dnn(self):
         self.assertIsNotNone(DNN_NET, "DNN model could not be loaded")
+
+    # Testing that the MMOD model is imported correctly 
+    def test_load_mmod(self):
+        self.assertIsNotNone(MMOD_DETECTOR, "MMOD model could not be loaded")
 
     # Testing that the CVZone model is not none. Test both models 
     def test_load_cvzone(self):

@@ -12,10 +12,11 @@ set_project_path_for_tests()
 from models.code.haar import detect_face_haar
 from models.code.hog import detect_face_hog
 from models.code.dnn import detect_face_dnn
+from models.code.mmod import detect_face_mmod
 from models.code.cvzone import detect_face_cvzone
 
 # If this gives an error, the requirements.txt has not been correctly installed
-from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, EYE_DISTANCE_INDEX
+from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, MMOD_DETECTOR
 
 
 # Path to the image without a face
@@ -57,6 +58,13 @@ class TestModelsNegative(unittest.TestCase):
     # Testing with DNN detector 
     def test_dnn_negative(self):
         faces = detect_face_dnn(self.image, DNN_NET, detectMultipleFaces=False)
+        
+        # Assert that it is none => no face detected
+        self.assertIsNone(faces)
+
+    # Testing with DNN detector 
+    def test_mmod_negative(self):
+        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detectMultipleFaces=False)
         
         # Assert that it is none => no face detected
         self.assertIsNone(faces)
