@@ -25,6 +25,7 @@ This project implements a server application using OpenCV for real-time face tra
 **[Installation](#Installation)**<br>
 **[Usage](#Usage)**<br>
 **[Unit testing](#Unit-testing)**<br>
+**[Scripts](#Scripts)**<br>
 **[Example Code](#Example-Code)**<br>
 **[System Description](#System-Description)**<br>
 **[Case Studies](#Case-Studies)**<br>
@@ -70,7 +71,7 @@ python src/main.py
 ```
 
 
-### Unit testing
+## Unit testing
 
 This repository includes unit test for testing the different algorithms. The following are tested: 
 - All models are loaded correctly from the dependencies.
@@ -84,6 +85,24 @@ To run all unit tests, simply run:
 python -m unittest -v
 ```
 
+
+## Scripts
+
+The repository also contains bash scripts. These scripts simplify the process of setting up, unit test and run the project. 
+Note that this is additional material, and are not required for neither setup, testing and running the project. Each script can be run by first adding executable permissions to them and run them in the terminal. The following scripts are included:
+
+- Run: File `run.sh`
+- Unit test: File `test.sh` 
+- Setup: File `setup.sh` 
+
+Run a script by: 
+
+```bash
+chmod +x ./run.sh
+./run.sh
+```
+
+
 ### Example Code
 This repository uses a modular design for all the face detection modules. This makes it easy to change the code and switch between models. The file in `./example/` includes example code for testing. Replace the `image_path` with the desired image path. Here is the code snippet from `example_detect_from_image.py`:
 
@@ -96,9 +115,10 @@ from models.code.dnn import detect_face_dnn
 from models.code.haar import detect_face_haar
 from models.code.hog import detect_face_hog
 from models.code.cvzone import detect_face_cvzone
+from models.code.mmod import detect_face_mmod
 
 # Import the detectors from src/constants.py
-from constants import DNN_NET, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR
+from constants import DNN_NET, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, MMOD_DETECTOR
 
 # Opening a sample image
 image_path = "path/to/your/image.jpg"
@@ -109,11 +129,14 @@ faces_dnn = detect_face_dnn(img, DNN_NET)
 faces_haar = detect_face_haar(img, HAAR_CLASSIFIER)
 faces_hog = detect_face_hog(img, HOG_DETECTOR)
 faces_cvzone = detect_face_cvzone(img, CVZONE_DETECTOR_MAX_ONE)
+faces_mmod = detect_face_mmod(img,MMOD_DETECTOR)
 
 # Print the amount of faces found within the image
 print(f"DNN Detected Faces: {faces_dnn}")
 print(f"Haar Detected Faces: {faces_haar}")
 print(f"HOG Detected Faces: {faces_hog}")
+print(f"CVZone Detected Faces: {faces_cvzone}")
+print(f"MMOD Detected Faces: {faces_mmod}")
 
 
 ```

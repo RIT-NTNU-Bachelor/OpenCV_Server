@@ -20,11 +20,13 @@ faces_dnn = detect_face_dnn(img, DNN_NET)
 faces_haar = detect_face_haar(img, HAAR_CLASSIFIER)
 faces_hog = detect_face_hog(img, HOG_DETECTOR)
 faces_cvzone = detect_face_cvzone(img, CVZONE_DETECTOR_MAX_ONE)
-face_mmod = detect_face_mmod(img,MMOD_DETECTOR)
+faces_mmod = detect_face_mmod(img,MMOD_DETECTOR)
 
 # Print the amount of faces found within the image
 print(f"DNN Detected Faces: {faces_dnn}")
 print(f"Haar Detected Faces: {faces_haar}")
 print(f"HOG Detected Faces: {faces_hog}")
+print(f"CVZone Detected Faces: {faces_cvzone}")
+print(f"MMOD Detected Faces: {faces_mmod}")
 
 
