@@ -77,17 +77,20 @@ def save_test(img, file_name, face):
 def get_images_from_dataset(path_to_parent_dir):
     # List of images found and saved
     images = []
+    image_width = 0
 
     # Iterate over each file 
     for (_, _, filenames) in walk(path_to_parent_dir):
         for file in filenames:
             full_path = path_to_parent_dir + file.strip()
             current_image = cv2.imread(full_path)
+            _, width = current_image.shape[:2]
+            image_width = width
             image_resized = cv2.resize(current_image, (400, 400), 
                interpolation = cv2.INTER_LINEAR)
 
             images.append(image_resized)
         break
 
-    return images
+    return (images, image_width)
 
