@@ -18,10 +18,11 @@ set_project_path_for_tests()
 from models.code.haar import detect_face_haar
 from models.code.hog import detect_face_hog
 from models.code.dnn import detect_face_dnn
+from models.code.mmod import detect_face_mmod
 from models.code.cvzone import detect_face_cvzone
 
 # If this gives an error, the requirements.txt has not been correctly installed
-from constants.model_constants import CVZONE_DETECTOR, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET
+from constants.model_constants import CVZONE_DETECTOR, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, MMOD_DETECTOR
 
 # Path to the image with two faces
 # All models should be able to detect both faces in the image 
@@ -104,6 +105,26 @@ class TestModelsWithTwoFaces(unittest.TestCase):
 
         # Saving the result to an image
         save_test(self.image,"dnn_two_faces_output.png", faces)
+
+
+    # Testing with MMOD detector 
+    def test_mmod_two_faces(self):
+        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detectMultipleFaces=True)
+        
+        # Check that the detected faces variable is a list instance 
+        self.assertIsInstance(faces, list, "ERROR: DNN model output should be a list with the two faces")
+
+        # There should be detected two faces in this list
+        self.assertEqual(len(faces), 2)
+
+        # For each face check that they are a tuple 
+        # Also if the tuple has the four expected values: X, Y, Width and Height 
+        for face in faces: 
+            self.assertIsInstance(face, tuple, "ERROR: A face was not a tuple")
+            self.assertEqual(len(face), 4, "ERROR: A face did not have the four properties expected in the rectangle")
+
+        # Saving the result to an image
+        save_test(self.image,"mmod_two_faces_output.png", faces)
 
     # Testing with CVZone detector 
     def test_cvzone_two_faces(self):

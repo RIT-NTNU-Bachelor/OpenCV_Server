@@ -14,6 +14,10 @@ HAAR_CLASSIFIER = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fro
 # Constants for Hog
 HOG_DETECTOR = dlib.get_frontal_face_detector()
 
+# Constants for MMOD
+MMOD_DETECTOR = dlib.cnn_face_detection_model_v1("./src/models/trained_models/mmod_human_face_detector.dat")
+
+
 # Constants for CVZone
 CVZONE_DETECTOR = FaceMeshDetector()
 CVZONE_DETECTOR_MAX_ONE = FaceMeshDetector(maxFaces=1)
