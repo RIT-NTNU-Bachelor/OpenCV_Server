@@ -18,10 +18,11 @@ set_project_path_for_tests()
 from models.code.haar import detect_face_haar
 from models.code.hog import detect_face_hog
 from models.code.dnn import detect_face_dnn
+from models.code.mmod import detect_face_mmod
 from models.code.cvzone import detect_face_cvzone
 
 # If this gives an error, the requirements.txt has not been correctly installed
-from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, EYE_DISTANCE_INDEX
+from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, EYE_DISTANCE_INDEX, MMOD_DETECTOR
 
 # Path to the image with one clear face
 # All models should be able to detect the face in the image 
@@ -123,6 +124,37 @@ class TestModelsWithOneFace(unittest.TestCase):
 
         # Saving the result to an image
         save_test(self.image,"dnn_one_face_output.png", faces)
+
+    
+    # Testing with MMOD detector 
+    def test_mmod_one_face(self):
+        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detectMultipleFaces=False)
+        
+        # Check that the detected faces variable is a tuple instance 
+        self.assertIsInstance(faces, tuple, "ERROR: MMOD model output should be a tuple")
+
+        # The tuple should have four properties: X, Y, Width, Height
+        self.assertEqual(len(faces), 4)
+
+        # Unwrapping the tuple
+        x, y, width, height = faces
+
+        # Check that the boundary box is of a certain width and height
+        # Using a range to check that the bounding box
+        # This is because the box might change slightly position for each iteration 
+        self.assertGreater(width, 120)
+        self.assertLess(width, 200)
+        self.assertGreater(height, 150)
+        self.assertLess(height, 220)
+
+        # Checking the position within a set range 
+        self.assertGreater(x, 170)
+        self.assertLess(x, 220)
+        self.assertGreater(y, 170)
+        self.assertLess(y, 215)
+
+        # Saving the result to an image
+        save_test(self.image,"mmod_one_face_output.png", faces)
 
     # Testing with CVZone detector 
     def test_cvzone_one_face(self):
