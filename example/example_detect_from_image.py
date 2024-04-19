@@ -9,7 +9,7 @@ from models.code.mmod import detect_face_mmod
 from models.code.cvzone import detect_face_cvzone
 
 # Import the detectors from src/constants.py
-from constants.model_constants import DNN_NET, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, MMOD_DETECTOR
+from constants import DNN_NET, CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, MMOD_DETECTOR
 
 # Opening a sample image
 image_path = "path/to/your/image.jpg"
