@@ -75,14 +75,6 @@ pip install -r requirements.txt
 7. Use the commands in the [Usage](#usage) section, or the scripts (`run.sh` / `test.sh`)
 
 
-
-
-2. Install the packages with pip: 
-
-```terminal
-pip install -r requirements.txt
-```
-
 ## Usage
 
 The repository includes code for all of the following methods:
