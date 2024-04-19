@@ -1,4 +1,6 @@
-def send_udp_data(sock, server_address_port, data, log=False):
+import socket
+
+def send_udp_data(sock:socket, server_address_port: tuple, data, log=False):
     """Sends data over UDP to a specified server and port.
 
     It is used to send the coordinates over to the Unreal Engine Client. 
