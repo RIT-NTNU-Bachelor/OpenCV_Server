@@ -12,7 +12,7 @@
 
 ![Screenshot from 2024-04-01 20-56-30](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/c6a54bb3-ea92-4ba2-9d1c-49edf7c3dc8d)
 
-(**Note:** The image shows the server tracking a users face, and then sending the coordinates over UDP)
+(**Note:** The image is for illustrating the server tracking a users face, and then sending the coordinates over UDP)
 
 This project implements a server application using OpenCV for real-time face tracking. It detects the face of a user via a webcam and sends the coordinates to a client application using UDP protocol. This allows for the development of interactive applications that respond to user's face position in real-time.
 
@@ -38,14 +38,48 @@ This project implements a server application using OpenCV for real-time face tra
 To successfully run this project, the following requirements must be met: 
 - Python Version 3.10.X
 - Installed all packages in `requirements.txt`
-- Access to webcam. Please confirm that your PC has a built-in webcam or connect an external webcam.
+- Access to webcam. Please make sure that your PC has a built-in webcam or are connected to an external webcam.
 
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the  OpenCV Server. All packages that are required are found within the `requirements.txt` file. The server is developed and tested with python 3.10.X, so make sure that the current version that of python is the same or a higher version. Install the packages with pip: 
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the  OpenCV Server. All packages that are required are found within the `requirements.txt` file. The server is developed and tested with python 3.10.X, so make sure that the current version that of python is the same or a higher version. 
 
-```bash
+
+### Installation without Virtual Environment
+
+Install the packages with pip: 
+
+```terminal
+pip install -r requirements.txt
+```
+
+`setup.sh` does this for you, and also checks if you have the correct Python version. 
+
+### Installation with Virtual Environment (VS Code Setup)
+
+1. Open the command pallet by pressing <kbd>Ctrl</kbd>+<kbd>Alt</kbd> + <kbd>p</kbd>
+2. Write the command `Python:Create Environment...`, ans select it:
+
+3. Select `Venv`
+
+4. Select your Python 3.10.x interpreter:
+
+
+5. Check of the box for installing the `requirements.txt`:
+
+
+6. Wait until the environment is set up! In the terminal, you will get the `venv` text before your command prompt like this. That means that it successfully created, and the environment is active:
+
+
+7. Use the commands in the [Usage](#usage) section, or the scripts (`run.sh` / `test.sh`)
+
+
+
+
+2. Install the packages with pip: 
+
+```terminal
 pip install -r requirements.txt
 ```
 
