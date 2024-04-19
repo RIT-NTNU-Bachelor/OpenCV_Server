@@ -22,7 +22,7 @@ from models.code.mmod import detect_face_mmod
 from models.code.cvzone import detect_face_cvzone
 
 # If this gives an error, the requirements.txt has not been correctly installed
-from constants.model_constants import CVZONE_DETECTOR, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, MMOD_DETECTOR
+from constants import CVZONE_DETECTOR, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, MMOD_DETECTOR
 
 # Path to the image with two faces
 # All models should be able to detect both faces in the image 
@@ -47,7 +47,7 @@ class TestModelsWithTwoFaces(unittest.TestCase):
 
     # Test with Haar face detection model 
     def test_haar_two_faces(self):
-        faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detectMultipleFaces=True)
+        faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detect_multiple_faces=True)
 
         # Check that the detected 'faces' variable is a instance of np.ndarray
         self.assertIsInstance(faces, np.ndarray, "ERROR: Haar model output should be a np.array")
@@ -66,7 +66,7 @@ class TestModelsWithTwoFaces(unittest.TestCase):
 
     # Testing with HOG detector 
     def test_hog_two_faces(self):
-        faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=True)
+        faces = detect_face_hog(self.image, HOG_DETECTOR, detect_multiple_faces=True)
         self.assertIsNotNone(faces,"ERROR: HOG model did not find the face in the test with one face")
 
         # Check that the detected 'faces' variable is an instance of dlib rectangles
@@ -89,7 +89,7 @@ class TestModelsWithTwoFaces(unittest.TestCase):
 
     # Testing with DNN detector 
     def test_dnn_two_faces(self):
-        faces = detect_face_dnn(self.image, DNN_NET, detectMultipleFaces=True)
+        faces = detect_face_dnn(self.image, DNN_NET, detect_multiple_faces=True)
         
         # Check that the detected 'faces' variable is a list instance 
         self.assertIsInstance(faces, list, "ERROR: DNN model output should be a list with the two faces")
@@ -109,7 +109,7 @@ class TestModelsWithTwoFaces(unittest.TestCase):
 
     # Testing with MMOD detector 
     def test_mmod_two_faces(self):
-        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detectMultipleFaces=True)
+        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detect_multiple_faces=True)
         
         # Check that the detected faces variable is a list instance 
         self.assertIsInstance(faces, list, "ERROR: DNN model output should be a list with the two faces")
@@ -128,7 +128,7 @@ class TestModelsWithTwoFaces(unittest.TestCase):
 
     # Testing with CVZone detector 
     def test_cvzone_two_faces(self):
-        faces = detect_face_cvzone(self.image, CVZONE_DETECTOR, detectMultipleFaces=True)
+        faces = detect_face_cvzone(self.image, CVZONE_DETECTOR, detect_multiple_faces=True)
 
         # Check that the detected 'faces' variable is a Rectangle instance 
         self.assertIsInstance(faces, list, "ERROR: CVZone model output should be a list")

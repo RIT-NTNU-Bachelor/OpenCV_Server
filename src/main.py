@@ -1,3 +1,4 @@
+# Import packages for viewing the image, sending the data and tracking the face
 import cv2
 import socket
 import cvzone
@@ -6,17 +7,17 @@ import cvzone
 from udp_server import send_udp_data
 
 # Import the function for estimating the depth (Z)
-from estimate_distance import get_z_estimation
+from estimate_distance import estimate_depth
 
 # Importing the function for face detection in the models module. 
 from models.code.cvzone import detect_face_cvzone
 
 # Importing the instance of detector
-from constants.model_constants import CVZONE_DETECTOR_MAX_ONE
+from constants import CVZONE_DETECTOR_MAX_ONE
 
 # Setup for the information for the UDP server. 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-serverAddressPort = ('127.0.0.1', 5052)
+server_address_port = ('127.0.0.1', 5052)
 
 
 def main():
@@ -37,25 +38,25 @@ def main():
             face = faces[0]
 
             # Get the X and Y cord for the face in the center 
-            faceCenter = face[1]
+            face_center = face[1]
 
             # Try to estimate the distance, ignore if not found.
-            d = get_z_estimation(face)
-            if d == None:
+            depth = estimate_depth(face)
+            if depth == None:
                 continue
 
             
             # Create an instance for containing the coordinates in a list 
             # Format will be [X, Y, Z]
-            faceCoordinatesXYZ = faceCenter
-            faceCoordinatesXYZ.append(d)
+            face_coordinates = face_center
+            face_coordinates.append(depth)
 
-            cvzone.putTextRect(img, f'Coords: {faceCoordinatesXYZ}',
+            cvzone.putTextRect(img, f'Coords: {face_coordinates}',
                             (face[10][0] - 100, face[10][1] - 50),
                             scale=2)
 
             # Send data using UDP
-            send_udp_data(sock, serverAddressPort, faceCoordinatesXYZ, log=True)
+            send_udp_data(sock, server_address_port, face_coordinates, log=True)
 
         cv2.imshow("Image", img)
         cv2.waitKey(1)

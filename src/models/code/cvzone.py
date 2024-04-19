@@ -1,19 +1,15 @@
 import numpy as np
 from cvzone.FaceMeshModule import FaceMeshDetector
 
-def detect_face_cvzone(img: np.ndarray, detector: FaceMeshDetector, detectMultipleFaces=True):
-    """
-    Function that detects faces in an image using the CVZone library. 
+def detect_face_cvzone(img: np.ndarray, detector: FaceMeshDetector, detect_multiple_faces=True):
+    """ Function that detects faces in an image using the CVZone library. 
 
     Link to the library: https://github.com/cvzone/cvzone 
 
     Args:
-        img (np.ndarray): 
-            The image in which to detect face. Retrieved by OpenCVs imread function.  
-        detector (FaceMeshDetector): 
-            An instance of the Face Mesh detector, pretrained from the CVZone library
-        detectMultipleFaces (bool): 
-            Will return multiple faces if true, else only one. Default is set to true. 
+    - img (np.ndarray): The image in which to detect face. Retrieved by OpenCVs imread function.  
+    - detector (FaceMeshDetector): An instance of the Face Mesh detector, pretrained from the CVZone library
+    - detectMultipleFaces (bool): Will return multiple faces if true, else only one. Default is set to true. 
 
     Returns:
         Depending on if detectMultipleFaces is true:
@@ -25,6 +21,6 @@ def detect_face_cvzone(img: np.ndarray, detector: FaceMeshDetector, detectMultip
     """
     _, faces = detector.findFaceMesh(img, draw=False)
 
-    if detectMultipleFaces == True:
+    if detect_multiple_faces == True:
         return faces
     return faces[0] if faces else None

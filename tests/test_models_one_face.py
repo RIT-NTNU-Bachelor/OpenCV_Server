@@ -22,7 +22,7 @@ from models.code.mmod import detect_face_mmod
 from models.code.cvzone import detect_face_cvzone
 
 # If this gives an error, the requirements.txt has not been correctly installed
-from constants.model_constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, EYE_DISTANCE_INDEX, MMOD_DETECTOR
+from constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, EYE_DISTANCE_INDEX, MMOD_DETECTOR
 
 # Path to the image with one clear face
 # All models should be able to detect the face in the image 
@@ -47,7 +47,7 @@ class TestModelsWithOneFace(unittest.TestCase):
 
     # Test with Haar face detection model 
     def test_haar_one_face(self):
-        faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detectMultipleFaces=False)
+        faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detect_multiple_faces=False)
 
         # Check that the detected 'faces' variable is a instance of np.ndarray
         self.assertIsInstance(faces, np.ndarray, "ERROR: Haar model output should be a np.array")
@@ -78,7 +78,7 @@ class TestModelsWithOneFace(unittest.TestCase):
 
     # Testing with HOG detector 
     def test_hog_one_face(self):
-        faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=False)
+        faces = detect_face_hog(self.image, HOG_DETECTOR, detect_multiple_faces=False)
         self.assertIsNotNone(faces,"ERROR: HOG model did not find the face in the test with one face")
 
         # Check that the detected 'faces' variable is an instance of dlib rectangle 
@@ -97,7 +97,7 @@ class TestModelsWithOneFace(unittest.TestCase):
 
     # Testing with DNN detector 
     def test_dnn_one_face(self):
-        faces = detect_face_dnn(self.image, DNN_NET, detectMultipleFaces=False)
+        faces = detect_face_dnn(self.image, DNN_NET, detect_multiple_faces=False)
         
         # Check that the detected 'faces' variable is a Rectangle instance 
         self.assertIsInstance(faces, tuple, "ERROR: DNN model output should be a tuple")
@@ -128,7 +128,7 @@ class TestModelsWithOneFace(unittest.TestCase):
     
     # Testing with MMOD detector 
     def test_mmod_one_face(self):
-        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detectMultipleFaces=False)
+        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detect_multiple_faces=False)
         
         # Check that the detected faces variable is a tuple instance 
         self.assertIsInstance(faces, tuple, "ERROR: MMOD model output should be a tuple")
@@ -158,7 +158,7 @@ class TestModelsWithOneFace(unittest.TestCase):
 
     # Testing with CVZone detector 
     def test_cvzone_one_face(self):
-        faces = detect_face_cvzone(self.image, CVZONE_DETECTOR_MAX_ONE, detectMultipleFaces=False)
+        faces = detect_face_cvzone(self.image, CVZONE_DETECTOR_MAX_ONE, detect_multiple_faces=False)
 
         # Check that the detected 'faces' variable is a Rectangle instance 
         self.assertIsInstance(faces, list, "ERROR: CVZone model output should be a list")
