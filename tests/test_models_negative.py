@@ -42,14 +42,14 @@ class TestModelsNegative(unittest.TestCase):
 
     # Test with Haar face detection model 
     def test_haar_negative(self):
-        faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detectMultipleFaces=False)
+        faces = detect_face_haar(self.image, HAAR_CLASSIFIER, detect_multiple_faces=False)
 
         # Assert that it is none => no face detected
         self.assertIsNone(faces)
 
     # Testing with HOG detector 
     def test_hog_negative(self):
-        faces = detect_face_hog(self.image, HOG_DETECTOR, detectMultipleFaces=False)
+        faces = detect_face_hog(self.image, HOG_DETECTOR, detect_multiple_faces=False)
 
         # Assert that it is none => no face detected
         self.assertIsNone(faces)
@@ -57,21 +57,21 @@ class TestModelsNegative(unittest.TestCase):
 
     # Testing with DNN detector 
     def test_dnn_negative(self):
-        faces = detect_face_dnn(self.image, DNN_NET, detectMultipleFaces=False)
+        faces = detect_face_dnn(self.image, DNN_NET, detect_multiple_faces=False)
         
         # Assert that it is none => no face detected
         self.assertIsNone(faces)
 
     # Testing with DNN detector 
     def test_mmod_negative(self):
-        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detectMultipleFaces=False)
+        faces = detect_face_mmod(self.image, MMOD_DETECTOR, detect_multiple_faces=False)
         
         # Assert that it is none => no face detected
         self.assertIsNone(faces)
 
     # Testing with CVZone detector 
     def test_cvzone_negative(self):
-        faces = detect_face_cvzone(self.image, CVZONE_DETECTOR_MAX_ONE, detectMultipleFaces=False)
+        faces = detect_face_cvzone(self.image, CVZONE_DETECTOR_MAX_ONE, detect_multiple_faces=False)
 
         # Assert that it is none => no face detected
         self.assertIsNone(faces)
