@@ -12,7 +12,7 @@ from estimate_distance import estimate_depth
 from models.code.cvzone import detect_face_cvzone
 
 # Importing the instance of detector
-from constants.model_constants import CVZONE_DETECTOR_MAX_ONE
+from constants import CVZONE_DETECTOR_MAX_ONE
 
 # Setup for the information for the UDP server. 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
