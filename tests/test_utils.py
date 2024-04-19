@@ -66,7 +66,7 @@ def save_test(img, file_name, face):
     image_with_box = img.copy()
 
     # Check that none if the input was none 
-    if img == None or len(file_name) == 0 or face == None:
+    if img is None or len(file_name) == 0 or face is None:
         print("ERROR: could not save unit test to image due to invalid given args")
         return 
 
@@ -93,4 +93,4 @@ def save_test(img, file_name, face):
 
     # Save the image to the file 
     full_path = os.path.join(PARENT_DIR, file_name)
-    cv2.imwrite(full_path, img)
+    cv2.imwrite(full_path, image_with_box)
