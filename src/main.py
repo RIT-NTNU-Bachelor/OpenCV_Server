@@ -6,7 +6,7 @@ import cvzone
 from udp_server import send_udp_data
 
 # Import the function for estimating the depth (Z)
-from estimate_distance import get_z_estimation
+from estimate_distance import estimate_depth
 
 # Importing the function for face detection in the models module. 
 from models.code.cvzone import detect_face_cvzone
@@ -40,7 +40,7 @@ def main():
             faceCenter = face[1]
 
             # Try to estimate the distance, ignore if not found.
-            d = get_z_estimation(face)
+            d = estimate_depth(face)
             if d == None:
                 continue
 
