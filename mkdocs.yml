@@ -23,3 +23,4 @@ nav:
     - Haar: haar.md
     - HOG: hog.md
     - MMOD: mmod.md
+  - Other Scripts: scripts.md

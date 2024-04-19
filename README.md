@@ -172,3 +172,49 @@ Estimated time of compiling both case studies (Note: the repository includes com
 ## License
 
 [MIT](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/blob/main/LICENSE)
+
+```
+OpenCV_Server
+├─ docs
+│  ├─ depth.md
+│  └─ index.md
+├─ example
+│  └─ example_detect_from_image.py
+├─ mkdocs.yml
+├─ requirements.txt
+├─ run.sh
+├─ scripts
+│  ├─ camera-center.py
+│  └─ run-all.py
+├─ setup.sh
+├─ src
+│  ├─ constants.py
+│  ├─ estimate_distance.py
+│  ├─ main.py
+│  ├─ models
+│  │  ├─ __init__.py
+│  │  ├─ code
+│  │  │  ├─ __init__.py
+│  │  │  ├─ cvzone.py
+│  │  │  ├─ dnn.py
+│  │  │  ├─ haar.py
+│  │  │  ├─ hog.py
+│  │  │  └─ mmod.py
+│  │  └─ trained_models
+│  │     ├─ deploy.prototxt
+│  │     ├─ haarcascade_frontalface_default.xml
+│  │     ├─ mmod_human_face_detector.dat
+│  │     ├─ opencv_face_detector.pbtxt
+│  │     ├─ opencv_face_detector_uint8.pb
+│  │     └─ res10_300x300_ssd_iter_140000_fp16.caffemodel
+│  └─ udp_server.py
+├─ test.sh
+└─ tests
+   ├─ __init__.py
+   ├─ test_load_model.py
+   ├─ test_models_negative.py
+   ├─ test_models_one_face.py
+   ├─ test_models_two_faces.py
+   └─ test_utils.py
+
+```
