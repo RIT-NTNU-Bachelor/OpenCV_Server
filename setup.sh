@@ -1,19 +1,15 @@
 #!/bin/bash
 
-# Telling the user that the startup process has started
-echo "[INFO] Setting up the python environment for the OpenCV Server..."
+# Check Python version
+REQUIRED_PYTHON="3.10"
+PYTHON_VERSION=$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)
 
-# Create the virtual enviroment, if the envirement has not been created before.
-if [ ! -d "./venv" ]; then
-    # Telling the user that we are creating the virtual environment 
-    echo "[INFO] Creating virtual environment..."
-    mkdir venv
-    python -m venv ./venv
+if [ "$PYTHON_VERSION" == "$REQUIRED_PYTHON" ]; then
+    echo "[INFO] Correct Python version ($PYTHON_VERSION).X is selected."
+else
+    echo "[ERROR] This script requires Python $REQUIRED_PYTHON.x. Current version is Python $PYTHON_VERSION."
+    exit 1
 fi
-
-# Activating the virtual environment with the generated script
-echo "[INFO] Activating virtual environment..."
-source ./venv/bin/activate
 
 # Installing dependencies
 echo "[INFO] Installing dependencies from requirements.txt.."
