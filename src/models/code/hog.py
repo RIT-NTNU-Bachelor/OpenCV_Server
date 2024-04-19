@@ -1,23 +1,22 @@
 import cv2
 import numpy as np
+import dlib
 
-def detect_face_hog(img: np.ndarray, detector, detect_multiple_faces: bool = False):
+def detect_face_hog(img: np.ndarray, detector, detect_multiple_faces: bool = False) -> (dlib.rectangle | dlib.rectangles | None):
     """Detects faces in an image using dlib's HOG-based face detector. 
     
-    Read more about the detector here: http://dlib.net/python/index.html#dlib_pybind11.get_frontal_face_detector
 
-    Args:
-    - img (np.ndarray): The image in which to detect face. Retrieved by OpenCVs imread function.
-    - detector: An instance of the HOG-based detector, pre-trained for face detection. 
-                It is initialized with this function: `dlib.get_frontal_face_detector()`
-    - detectMultipleFaces (bool, optional): 
-            Will return multiple faces if true, else only one. Default is set to true. 
+    Parameters:
+        img (np.ndarray): The image in which faces are to be detected, typically obtained from `cv2.imread`.
+        detector: An instance of dlib's HOG-based face detector, typically initialized using `dlib.get_frontal_face_detector()`.
+        detect_multiple_faces (bool, optional): Specifies whether the function should return detections for all faces found 
+                                                (True) or just the most prominent face (False). Defaults to False.
 
-    Returns:
-        faces (dlib.rectangle | dlib.rectangles | None)
-        - A list of detected face as dlib.rectangles, or
-        - A single rectangle for the most prominent face (dlib.rectangle), or
-        - None, if no faces are detected.
+    Returns: 
+        If `detect_multiple_faces` is True, returns a list of `dlib.rectangles` each indicating a detected face. \
+        If False, returns a single `dlib.rectangle` for the most prominent face, or None if no faces are detected. \
+        Each `dlib.rectangle` object represents the bounding box around a detected face with attributes allowing access to the bounding coordinates. \
+
 
     """
     # Convert the image to grayscale to simplify the detection process
