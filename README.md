@@ -61,18 +61,27 @@ pip install -r requirements.txt
 1. Open the command pallet by pressing <kbd>Ctrl</kbd>+<kbd>Alt</kbd> + <kbd>p</kbd>
 2. Write the command `Python:Create Environment...`, ans select it:
 
-3. Select `Venv`
+![Screenshot from 2024-04-19 13-57-58](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/878971c9-5888-4292-b5cb-b428b5dd5306)
 
-4. Select your Python 3.10.x interpreter:
+4. Select `Venv`
 
-
-5. Check of the box for installing the `requirements.txt`:
-
-
-6. Wait until the environment is set up! In the terminal, you will get the `venv` text before your command prompt like this. That means that it successfully created, and the environment is active:
+![Screenshot from 2024-04-19 13-58-29](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/733c5b6a-2d4f-43c0-83db-618bd086b71b)
 
 
-7. Use the commands in the [Usage](#usage) section, or the scripts (`run.sh` / `test.sh`)
+6. Select your Python 3.10.x interpreter:
+
+![Screenshot from 2024-04-19 13-59-12](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/94050719-77b0-4464-8f69-e3f1e2f16a3a)
+
+7. Check of the box for installing the `requirements.txt`:
+
+![Screenshot from 2024-04-19 13-59-50](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/c2f30447-e2a0-4f38-9d4e-f5144906fbaf)
+
+8. Wait until the environment is set up! In the terminal, you will get the `venv` text before your command prompt like this. That means that it successfully created, and the environment is active:
+
+![Screenshot from 2024-04-19 14-05-08](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/82be9c71-5922-4f41-9ab9-b308f6954948)
+
+
+10. Use the commands in the [Usage](#usage) section, or the scripts (`run.sh` / `test.sh`)
 
 
 ## Usage
