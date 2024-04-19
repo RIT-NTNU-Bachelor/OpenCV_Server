@@ -1,6 +1,4 @@
-from constants import CVZONE_DETECTOR_MAX_ONE, EYE_DISTANCE_INDEX
-from config_constants import FOCAL_LENGTH, INTEROCULAR_DISTANCE
-
+from constants import CVZONE_DETECTOR_MAX_ONE, EYE_DISTANCE_INDEX, FOCAL_LENGTH, INTEROCULAR_DISTANCE
 
 def estimate_depth(landmarks):
     """ Estimate the Z-coordinate (depth) for a detected face. Depth is the distance between the screen and the user. 
