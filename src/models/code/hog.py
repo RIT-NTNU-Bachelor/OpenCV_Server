@@ -6,7 +6,7 @@ def detect_face_hog(img: np.ndarray, detector, detect_multiple_faces: bool = Fal
     
     Read more about the detector here: http://dlib.net/python/index.html#dlib_pybind11.get_frontal_face_detector
 
-    Parameters:
+    Args:
     - img (np.ndarray): The image in which to detect face. Retrieved by OpenCVs imread function.
     - detector: An instance of the HOG-based detector, pre-trained for face detection. 
                 It is initialized with this function: `dlib.get_frontal_face_detector()`

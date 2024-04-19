@@ -5,7 +5,7 @@ def estimate_depth(landmarks: list):
     
     It uses the CVZones distance estimation. Using the distance between the eyes, focal length and a known average distance between the eyes.
 
-    Parameters: 
+    Args: 
     - landmarks(list): A list representing a detected face with all the 468 landmarks.
 
     Returns:

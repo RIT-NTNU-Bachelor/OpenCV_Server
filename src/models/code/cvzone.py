@@ -6,7 +6,7 @@ def detect_face_cvzone(img: np.ndarray, detector: FaceMeshDetector, detect_multi
 
     Link to the library: https://github.com/cvzone/cvzone 
 
-    Parameters:
+    Args:
     - img (np.ndarray): The image in which to detect face. Retrieved by OpenCVs imread function.  
     - detector (FaceMeshDetector): An instance of the Face Mesh detector, pretrained from the CVZone library
     - detectMultipleFaces (bool): Will return multiple faces if true, else only one. Default is set to true. 

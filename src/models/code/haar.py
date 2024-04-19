@@ -13,7 +13,7 @@ def detect_face_haar(img: np.ndarray, detector: cv2.CascadeClassifier, detect_mu
     Scale, neighbors and size are also explained documentation: 
     https://docs.opencv.org/3.4/d1/de5/classcv_1_1CascadeClassifier.html 
 
-    Parameters:
+    Args:
     - img (np.ndarray): 
             The image in which to detect face. Retrieved by OpenCVs imread function.  
     - detector (cv2.CascadeClassifier): 

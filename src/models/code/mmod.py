@@ -8,7 +8,7 @@ def detect_face_mmod(img: np.ndarray, detector: dlib.fhog_object_detector, in_he
     Read more about this detection method in the dlib MMOD documentation: 
     http://dlib.net/python/index.html#dlib.fhog_object_detector
 
-    Parameters: 
+    Args: 
     - img (np.ndarray): The input image in which faces are to be detected. It should be in the format acceptable by
                         OpenCV, typically a numpy ndarray obtained from cv2.imread.
     - detector (dlib.fhog_object_detector): The dlib MMOD face detector object, which can be obtained using

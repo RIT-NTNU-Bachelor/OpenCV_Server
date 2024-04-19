@@ -5,7 +5,7 @@ def send_udp_data(sock:socket, server_address_port: tuple, data, log=False):
 
     It is used to send the coordinates over to the Unreal Engine Client. 
     
-    Parameters: 
+    Args: 
     - sock (socket): The socket object used for communication.
     - server_address_port(tuple): A tuple containing the server address and port. 
     - data: The data to send.

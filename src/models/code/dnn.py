@@ -9,7 +9,7 @@ def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe",
     Link to the Caffe models: https://caffe.berkeleyvision.org/
     Link to the TensorFlow models: https://www.tensorflow.org/
 
-    Parameters:
+    Args:
     - img (np.ndarray): The input image in which faces are to be detected. It should be in the format
                           acceptable by OpenCV, typically a numpy ndarray obtained from cv2.imread.
     - net (cv2.dnn_Net): The pre-trained DNN model loaded using cv2.dnn.readNet for face detection. For more information
