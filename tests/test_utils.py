@@ -9,43 +9,66 @@ COLOR = (0, 255, 0) # Color of landmark or boarder
 PARENT_DIR = "data/results/unit_test_output/" # output folder relative to the root folder of the project
 
 
-# Adds the parent 'src' directory to the system path.
-# This allows the test files to import modules from the src directory.
+
 def set_project_path_for_tests():
+    """Adds the parent 'src' directory to the system path.
+    This allows the test files to import modules from the src directory.
+    """
     current_dir = os.path.dirname(os.path.abspath(__file__))
     parent_dir = os.path.join(current_dir, '../src')  
     sys.path.insert(0, parent_dir)
 
 
-# Function to draw a single rectangle 
-# Given the face coordinates and the image that the rectangle should be drawn on
 def draw_rectangle(face_coords, image):
+    """Function to draw a single rectangle
+
+    Args:
+    - face_coords (tuple): Tuple with x, y, width and height of the bounding box
+    - image (Matlike): Image object obtained from the OpenCV imread function 
+    """
     x, y, width, height = face_coords
     cv2.rectangle(image, (x, y), (x + width, y + height), COLOR, 2)
 
-# Draw each landmark on a given image
-# Takes the list of landmarks and the image that the rectangle should be drawn on
+
 def draw_landmark(landmarks, image):
+    """Function to draw a landmark.
+    Draws a circle in the image for each landmark in the given list of landmarks
+
+    Args:
+        landmarks (list): List of landmarks where each landmark has a x and y position
+        image (Matlike): Image object obtained from the OpenCV imread function 
+    """
     for point in landmarks:
         cv2.circle(image, (point[0], point[1]), 1, COLOR, -1)
 
-# Draw the rectangle from Dlib output
-# Takes the dlib.rectangle object for drawing the rectangle 
 def draw_rectangle_from_dlib(face_rectangle, img_with_box):
+    """Function that draws the given dlib rectangle to the given image
+
+    Args:
+        face_rectangle (dlib.rectangle): A dlib rectangle object
+        img_with_box (Matlike): Image object obtained from the OpenCV imread function
+    """
     cv2.rectangle(img_with_box, (face_rectangle.left(), face_rectangle.top()), (face_rectangle.right(), face_rectangle.bottom()), COLOR, 2)
+    
 
-# Function that saves the image to the 
-def save_image_to_file(img, file_name):
-    full_path = os.path.join(PARENT_DIR, file_name)
-    cv2.imwrite(full_path, img)
-
-# Function for saving test output as a single image
-# Will detect how many faces was detected and then draw each face on the image
-# Works with all models and with both rectangles and landmarks (draws both to the image)
-# Saves the image in a directory with the given filename
 def save_test(img, file_name, face):
+    """ Function for saving test output as a single image
+    Will detect how many faces was detected and then draw each face on the image
+    Works with all models and with both rectangles and landmarks (draws both to the image)
+    Saves the image in a directory with the given filename
+
+    Args:
+        img (Matlike): OpenCV image that the bounding boxes will be drawn on
+        file_name (string): name of the file of the test 
+        face(list| tuple | np.array | dlib.rectangle | dlib.rectangles): Output from detecting face with 
+    """
     # Create a new image copy for drawing the rectangle or landmarks on
     image_with_box = img.copy()
+
+    # Check that none if the input was none 
+    if img == None or len(file_name) == 0 or face == None:
+        print("ERROR: could not save unit test to image due to invalid given args")
+        return 
 
     # Check what model it is based on the datatype and then draw the landmark/rectangle accordantly 
     if isinstance(face, tuple) or (isinstance(face, np.ndarray) and face.ndim == 1): # Single face as a tuple or 1D numpy array 
@@ -69,4 +92,5 @@ def save_test(img, file_name, face):
                 draw_landmark(face_landmarks, image_with_box)
 
     # Save the image to the file 
-    save_image_to_file(image_with_box, file_name)
+    full_path = os.path.join(PARENT_DIR, file_name)
+    cv2.imwrite(full_path, img)
