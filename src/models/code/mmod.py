@@ -2,30 +2,25 @@ import cv2
 import dlib
 import numpy as np
 
-def detect_face_mmod(img: np.ndarray, detector: dlib.fhog_object_detector, in_height=300, in_width=0, detect_multiple_faces=False):
+def detect_face_mmod(img: np.ndarray, detector: dlib.fhog_object_detector, in_height=300, in_width=0, detect_multiple_faces=False) -> (list | tuple | None) :
     """ Detects faces in an image using the CNN-based dlib MMOD (Max-Margin Object Detection) face detector.
 
-    Read more about this detection method in the dlib MMOD documentation: 
-    http://dlib.net/python/index.html#dlib.fhog_object_detector
-
-    Args: 
-    - img (np.ndarray): The input image in which faces are to be detected. It should be in the format acceptable by
-                        OpenCV, typically a numpy ndarray obtained from cv2.imread.
-    - detector (dlib.fhog_object_detector): The dlib MMOD face detector object, which can be obtained using
-                                            dlib.get_frontal_face_detector().
-    - inHeight (int, optional): The height of the image for detection. The image will be resized to this height while
-                                maintaining the aspect ratio. Defaults to 300.
-    - inWidth (int, optional): The width of the image for detection. If set to 0, it will be calculated based on the
-                                aspect ratio of the input image. Defaults to 0.
-    - detectMultipleFaces (bool, optional): If True, detects and returns bounding boxes for all faces found in the
-                                            image. If False, returns the bounding box for the most prominent face.
-                                            Defaults to False.
+    Parameters:
+        img (np.ndarray): The input image in which faces are to be detected. The image should be in a format
+                          acceptable by OpenCV, typically a numpy ndarray obtained from `cv2.imread`.
+        detector (dlib.fhog_object_detector): The dlib MMOD face detector object, which can be initialized with
+                                              `dlib.cnn_face_detection_model_v1` for CNN models.
+        in_height (int, optional): The height to which the image will be resized for detection, maintaining the aspect ratio.
+                                   Default is 300 pixels.
+        in_width (int, optional): The width to which the image will be resized for detection. If set to 0, it will be
+                                  calculated based on the aspect ratio of the input image. Defaults to 0.
+        detect_multiple_faces (bool, optional): Specifies whether to detect and return bounding boxes for all faces found
+                                                in the image or just the most prominent face. Defaults to False.
 
     Returns:
-        list or tuple or None( depending on the value of detectMultipleFaces):
-        - If True, returns a list of tuples (x, y, width, height) for each detected face.
-        - If False, returns a single tuple (x, y, width, height) for the most prominent face, or None if no faces are detected.
-        - Each tuple contains the coordinates of the top-left corner and the dimensions of the bounding box.
+        If `detect_multiple_faces` is true, returns a list of tuples (x, y, width, height) for each detected face. \
+        Else returns a single tuple (x, y, width, height) for the most prominent face, or None if no faces are detected. \
+        Each tuple represents the top-left corner and dimensions of the bounding box around the detected face.
 
     """
 

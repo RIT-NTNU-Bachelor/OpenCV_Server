@@ -27,6 +27,7 @@ This project implements a server application using OpenCV for real-time face tra
 **[Unit testing](#Unit-testing)**<br>
 **[Scripts](#Scripts)**<br>
 **[Example Code](#Example-Code)**<br>
+**[Project Structure](#Project-Structure)**<br>
 **[System Description](#System-Description)**<br>
 **[Case Studies](#Case-Studies)**<br>
 **[License](#License)**<br>
@@ -104,7 +105,7 @@ chmod +x ./run.sh
 
 
 ### Example Code
-This repository uses a modular design for all the face detection modules. This makes it easy to change the code and switch between models. The file in `./example/` includes example code for testing. Replace the `image_path` with the desired image path. Here is the code snippet from `example_detect_from_image.py`:
+This repository uses a modular design for all the face detection modules. This makes it easy to change the code and switch between models. For instance: 
 
 ```python
 # Import OpenCV for reading image
@@ -140,6 +141,54 @@ print(f"MMOD Detected Faces: {faces_mmod}")
 
 
 ```
+## Project Structure
+
+```
+OpenCV_Server
+├─ docs
+│  ├─ depth.md
+│  └─ index.md
+├─ example
+│  └─ example_detect_from_image.py
+├─ mkdocs.yml
+├─ requirements.txt
+├─ run.sh
+├─ scripts
+│  ├─ camera-center.py
+│  └─ run-all.py
+├─ setup.sh
+├─ src
+│  ├─ constants.py
+│  ├─ estimate_distance.py
+│  ├─ main.py
+│  ├─ models
+│  │  ├─ __init__.py
+│  │  ├─ code
+│  │  │  ├─ __init__.py
+│  │  │  ├─ cvzone.py
+│  │  │  ├─ dnn.py
+│  │  │  ├─ haar.py
+│  │  │  ├─ hog.py
+│  │  │  └─ mmod.py
+│  │  └─ trained_models
+│  │     ├─ deploy.prototxt
+│  │     ├─ haarcascade_frontalface_default.xml
+│  │     ├─ mmod_human_face_detector.dat
+│  │     ├─ opencv_face_detector.pbtxt
+│  │     ├─ opencv_face_detector_uint8.pb
+│  │     └─ res10_300x300_ssd_iter_140000_fp16.caffemodel
+│  └─ udp_server.py
+├─ test.sh
+└─ tests
+   ├─ __init__.py
+   ├─ test_load_model.py
+   ├─ test_models_negative.py
+   ├─ test_models_one_face.py
+   ├─ test_models_two_faces.py
+   └─ test_utils.py
+
+```
+
 
 
 ## System Description

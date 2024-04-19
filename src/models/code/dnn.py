@@ -1,34 +1,28 @@
 import cv2
 import numpy as np
 
-def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe", conf_threshold: float = 0.7, detect_multiple_faces: bool = False):
+def detect_face_dnn(img: np.ndarray, net: cv2.dnn_Net, framework: str = "caffe", conf_threshold: float = 0.7, detect_multiple_faces: bool = False) -> (list | tuple | None):
     """Function that detects faces in an image using a Deep Neural Network (DNN) model. The function supports models trained
     with either the Caffe or TensorFlow framework.
 
-    Read more on OpenCV DNN documentation: https://docs.opencv.org/master/d6/d0f/group__dnn.html
-    Link to the Caffe models: https://caffe.berkeleyvision.org/
-    Link to the TensorFlow models: https://www.tensorflow.org/
+    Parameters:
+        img (np.ndarray): The input image in which faces are to be detected. The image should be in a format
+                          acceptable by OpenCV, typically a numpy ndarray obtained from `cv2.imread`.
+        net (cv2.dnn_Net): The pre-trained DNN model loaded using `cv2.dnn.readNet` for face detection. 
+                           For more information on loading models, refer to the [OpenCV documentation on dnn_Net](https://docs.opencv.org/master/db/d30/classcv_1_1dnn_1_1Net.html).
+        framework (str, optional): Specifies the framework of the pre-trained model. Can be 'caffe' or
+                                   'tensorflow'. Defaults to 'caffe'.
+        conf_threshold (float, optional): The minimum confidence threshold for a detection to be considered valid. 
+                                          Ranges between 0 and 1, with a higher threshold reducing false positives. Defaults to 0.7.
+        detect_multiple_faces (bool, optional): If True, detects and returns bounding boxes for all detected faces.
+                                                If False, returns a bounding box for the most prominent face or None if no faces are detected.
 
-    Args:
-    - img (np.ndarray): The input image in which faces are to be detected. It should be in the format
-                          acceptable by OpenCV, typically a numpy ndarray obtained from cv2.imread.
-    - net (cv2.dnn_Net): The pre-trained DNN model loaded using cv2.dnn.readNet for face detection. For more information
-                        on loading models, refer to: https://docs.opencv.org/master/db/d30/classcv_1_1dnn_1_1Net.html
-    - framework (str, optional): Specifies the framework of the pre-trained model. Accepts either 'caffe' or
-                         'tensorflow'. Defaults to 'caffe'.
-    - conf_threshold (float, optional): The minimum confidence level for a detection to be considered a face.
-                                Ranges between 0 and 1, with a higher threshold resulting in fewer
-                                detections but with increased reliability. Defaults to 0.7.
-    - detectMultipleFaces (bool, optional): If True, detects and returns bounding boxes for all faces found in
-                                    the image. If False, returns the bounding box for the
+    Returns:       
+        If True, returns a list of tuples (x, y, width, height) for each detected face. If False, returns a single tuple (x, y, width, height) for the most prominent face, or None if no faces are detected. Each tuple contains the coordinates of the top-left corner and the dimensions of the bounding box.
 
-
-    Returns:
-        list or tuple or None (depending on the value of detectMultipleFaces):
-        - If True, returns a list of tuples (x, y, width, height) for each detected face.
-        - If False, returns a single tuple (x, y, width, height) for the most prominent face, or None if no faces are detected.
-        - Each tuple contains the coordinates of the top-left corner and the dimensions of the bounding box.
-    - 
+    Note:
+        This function requires that the appropriate DNN model files are accessible and properly configured before use. 
+        The [OpenCV Server](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server) code has this setup by default. 
     """
 
     # Get the dimensions of the input image

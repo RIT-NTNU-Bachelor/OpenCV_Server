@@ -1,17 +1,18 @@
 from constants import CVZONE_DETECTOR_MAX_ONE, EYE_DISTANCE_INDEX, FOCAL_LENGTH, INTEROCULAR_DISTANCE
 
-def estimate_depth(landmarks: list):
-    """ Estimate the Z-coordinate (depth) for a detected face. Depth is the distance between the screen and the user. 
-    
-    It uses the CVZones distance estimation. Using the distance between the eyes, focal length and a known average distance between the eyes.
+def estimate_depth(landmarks: list[list[int]]):
+    """Estimate the Z-coordinate (depth) for a detected face.
 
-    Args: 
-    - landmarks(list): A list representing a detected face with all the 468 landmarks.
+    This function calculates the depth, which is the distance between the screen and the user, using a method that relies on the distance between the eyes. 
+    It uses the focal length and the average distance between the eyes, to estimate the depth based on eye landmarks detected. 
+
+    Parameters:
+        landmarks (list[list[int]]): A list of arrays, each array representing a landmark with x and y position of that landmark.
 
     Returns:
-    - d(int | None): The estimated depth (Z-coordinate), or none if the incorrect list of landmarks was given. 
-    """
+        int: The distance between the user and the camera 
     
+    """
     # Check that the list has the 468 landmarks 
     if len(landmarks) != 468:
         print("ERROR: Invalid length of landmark list expected 468, was {len(landmarks)}")

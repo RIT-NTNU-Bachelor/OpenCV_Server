@@ -1,0 +1,26 @@
+site_name: OpenCV Server Documentation
+
+
+theme:
+  name: "material"
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - "import sys; sys.path.append('src')"
+
+
+nav:
+  - Home: index.md
+  - Depth Estimation: depth.md
+  - UDP Server: udp_server.md
+  - Models:
+    - CVZone: cvzone.md
+    - DNN: dnn.md
+    - Haar: haar.md
+    - HOG: hog.md
+    - MMOD: mmod.md
+  - Other Scripts: scripts.md
