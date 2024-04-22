@@ -12,7 +12,7 @@
 
 ![Screenshot from 2024-04-01 20-56-30](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/c6a54bb3-ea92-4ba2-9d1c-49edf7c3dc8d)
 
-(**Note:** The image shows the server tracking a users face, and then sending the coordinates over UDP)
+(**Note:** The image is for illustrating the server tracking a users face, and then sending the coordinates over UDP)
 
 This project implements a server application using OpenCV for real-time face tracking. It detects the face of a user via a webcam and sends the coordinates to a client application using UDP protocol. This allows for the development of interactive applications that respond to user's face position in real-time.
 
@@ -38,16 +38,51 @@ This project implements a server application using OpenCV for real-time face tra
 To successfully run this project, the following requirements must be met: 
 - Python Version 3.10.X
 - Installed all packages in `requirements.txt`
-- Access to webcam. Please confirm that your PC has a built-in webcam or connect an external webcam.
+- Access to webcam. Please make sure that your PC has a built-in webcam or are connected to an external webcam.
 
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the  OpenCV Server. All packages that are required are found within the `requirements.txt` file. The server is developed and tested with python 3.10.X, so make sure that the current version that of python is the same or a higher version. Install the packages with pip: 
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the  OpenCV Server. All packages that are required are found within the `requirements.txt` file. The server is developed and tested with python 3.10.X, so make sure that the current version that of python is the same or a higher version. 
 
-```bash
+
+### Installation without Virtual Environment
+
+Install the packages with pip: 
+
+```terminal
 pip install -r requirements.txt
 ```
+
+`setup.sh` does this for you, and also checks if you have the correct Python version. 
+
+### Installation with Virtual Environment (VS Code Setup)
+
+1. Open the command pallet by pressing <kbd>Ctrl</kbd>+<kbd>Alt</kbd> + <kbd>p</kbd>
+2. Write the command `Python:Create Environment...`, ans select it:
+
+![Screenshot from 2024-04-19 13-57-58](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/878971c9-5888-4292-b5cb-b428b5dd5306)
+
+4. Select `Venv`
+
+![Screenshot from 2024-04-19 13-58-29](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/733c5b6a-2d4f-43c0-83db-618bd086b71b)
+
+
+6. Select your Python 3.10.x interpreter:
+
+![Screenshot from 2024-04-19 13-59-12](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/94050719-77b0-4464-8f69-e3f1e2f16a3a)
+
+7. Check of the box for installing the `requirements.txt`:
+
+![Screenshot from 2024-04-19 13-59-50](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/c2f30447-e2a0-4f38-9d4e-f5144906fbaf)
+
+8. Wait until the environment is set up! In the terminal, you will get the `venv` text before your command prompt like this. That means that it successfully created, and the environment is active:
+
+![Screenshot from 2024-04-19 14-05-08](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/82be9c71-5922-4f41-9ab9-b308f6954948)
+
+
+10. Use the commands in the [Usage](#usage) section, or the scripts (`run.sh` / `test.sh`)
+
 
 ## Usage
 
