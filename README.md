@@ -37,8 +37,8 @@ This project implements a server application using OpenCV for real-time face tra
 
 To successfully run this project, the following requirements must be met: 
 - Python Version 3.10.X
-- Installed all packages in `requirements.txt`
-- Access to webcam. Please make sure that your PC has a built-in webcam or are connected to an external webcam.
+- Installed all packages listed in `requirements.txt`
+- Access to webcam. Please ensure that your PC has a built-in webcam or is connected to an external webcam.
 
 
 ## Installation
@@ -59,7 +59,7 @@ pip install -r requirements.txt
 ### Installation with Virtual Environment (VS Code Setup)
 
 1. Open the command pallet by pressing <kbd>Ctrl</kbd>+<kbd>Alt</kbd> + <kbd>p</kbd>
-2. Write the command `Python:Create Environment...`, ans select it:
+2. Write the command `Python:Create Environment...`, and select it:
 
 ![Screenshot from 2024-04-19 13-57-58](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/assets/66110094/878971c9-5888-4292-b5cb-b428b5dd5306)
 
@@ -111,9 +111,9 @@ python src/main.py
 
 This repository includes unit test for testing the different algorithms. The following are tested: 
 - All models are loaded correctly from the dependencies.
-- All models does not find a face in a image without a face 
-- All models finds the single face in a image
-- All models finds both faces in a image  
+- All models do not find a face in an image without a face
+- All models find the single face in an image
+- All models find both faces in an image
 
 To run all unit tests, simply run:
 
@@ -234,7 +234,7 @@ The system consists of two primary components: the Face Tracking server and the 
 
 ## Case Studies
 
-For deciding the best face detection algorithm for the thesis, see the case studies created in the `analysis/` folder (created in JupyterHub files). The two main factors for a real-time face detection system is efficacy and accuracy. These factors was also discussed, and agreed upon with the bachelor thesis client. There are two case studies
+For deciding the best face detection algorithm for the thesis, see the case studies created in the `analysis/` folder (created in JupyterHub files). The two main factors for a real-time face detection system is efficacy and accuracy. These factors were also discussed and agreed upon with the bachelor thesis client. There are two case studies
 
 1. Case Study - Comparing Accuracy for Real-Time Face Detection Models
 This case study measures the FPS over a dataset with ~2800 images. It presents the result in plotted in multiple graphs. See the [case study for more information](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/blob/main/analysis/compare_face_detection_accuracy.ipynb)
@@ -243,7 +243,7 @@ This case study measures the FPS over a dataset with ~2800 images. It presents t
 This case study measures the memory usage of each algorithm. It plots the result as peak mega byte usage during a stress test of the algorithms. For this case, the python package `memory_profiler` is used. The result is plotted in multiple graphs. See the [case study for more information](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/blob/main/analysis/compare_face_detection_efficacy.ipynb)
 
 
-**Note:** The case studies does not represent an absolute truth. There are most likely something that makes it not objectively true. Use them with caution.
+**Note:** The case studies do not represent an absolute truth. There are most likely something that makes it not objectively true. Use them with caution.
 
 Code Owners are allowed to use the Github Workflow that triggers the compiling of the case studies. The workflow also downloads the dataset needed. The code for the workflow can be found [here](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/blob/main/.github/workflows/jupiterhub_workflow.yml). 
 
