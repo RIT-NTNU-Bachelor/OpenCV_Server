@@ -9,10 +9,13 @@ import numpy as np
 # https://github.com/spmallick/learnopencv/blob/master/FaceDetectionComparison/run-all.py
 
 # Load models
+
+# TODO: REPLACE WITH CONSTANTS 
 face_cascade = cv2.CascadeClassifier("../src/models/trained_models/haarcascade_frontalface_default.xml")
 hog_detector = dlib.get_frontal_face_detector()
 mmod_detector = dlib.cnn_face_detection_model_v1("../src/models/trained_models/mmod_human_face_detector.dat")
 
+# TODO: use built in function instead
 def detect_faces_haar(cascade, frame, in_height=300):
     frame_copy = frame.copy()
     frame_height, frame_width = frame_copy.shape[:2]
@@ -33,6 +36,8 @@ def detect_faces_haar(cascade, frame, in_height=300):
         cv2.rectangle(frame_copy, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 2)
     return frame_copy, bboxes
 
+
+# TODO: use built in function instead
 def detect_faces_dnn(net, frame, conf_threshold=0.7):
     frame_copy = frame.copy()
     frame_height, frame_width = frame_copy.shape[:2]
@@ -40,7 +45,9 @@ def detect_faces_dnn(net, frame, conf_threshold=0.7):
 
     net.setInput(blob)
     detections = net.forward()
-    bboxes = []
+
+    # TODO: BBoxes is not correct 
+    bboxes = [] 
     for i in range(detections.shape[2]):
         confidence = detections[0, 0, i, 2]
         if confidence > conf_threshold:
@@ -52,6 +59,7 @@ def detect_faces_dnn(net, frame, conf_threshold=0.7):
             cv2.rectangle(frame_copy, (x1, y1), (x2, y2), (0, 255, 0), 2)
     return frame_copy, bboxes
 
+# TODO: use built in function instead
 def detect_faces_dlib(detector, frame, in_height=300):
     frame_copy = frame.copy()
     frame_height, frame_width = frame_copy.shape[:2]
@@ -75,7 +83,10 @@ def detect_faces_dlib(detector, frame, in_height=300):
         cv2.rectangle(frame_copy, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 2)
     return frame_copy, bboxes
 
+# TODO: use built in function instead
 if __name__ == "__main__":
+
+    #TODO: Why are you retrieving args? This script does not need it
     parser = argparse.ArgumentParser(description="Face detection")
     parser.add_argument("--video", type=str, help="Path to video file")
     parser.add_argument("--device", type=str, default="cpu", choices=["cpu", "gpu"], help="Device to use")
@@ -112,6 +123,9 @@ if __name__ == "__main__":
         if not has_frame:
             break
 
+
+        # TODO: Case study does the same. Why do we need this?
+
         frame_count += 1
         t = time.time()
         out_haar, _ = detect_faces_haar(face_cascade, frame)
@@ -139,6 +153,7 @@ if __name__ == "__main__":
         cv2.putText(out_hog, f"Dlib HOG FPS: {fps_hog:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         cv2.putText(out_mmod, f"Dlib MMOD {args.device.upper()} FPS: {fps_mmod:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
+        # TODO: Add more comments in the code. This does not make sense 
         combined_top = np.hstack([out_haar, out_dnn])
         combined_bottom = np.hstack([out_hog, out_mmod])
         combined = np.vstack([combined_top, combined_bottom])
