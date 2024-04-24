@@ -176,15 +176,66 @@ print(f"MMOD Detected Faces: {faces_mmod}")
 
 
 ```
+
 ## Project Structure
 
 ```
 OpenCV_Server
+
+│    
+├─ .gitattributes
+├─ .github
+│  └─ workflows
+│     └─ jupiterhub_workflow.yml
+├─ .gitignore
+├─ LICENSE
+├─ README.md
+├─ analysis
+│  ├─ compare_face_detection_accuracy.ipynb
+│  └─ compare_face_detection_efficacy.ipynb
+├─ data
+│  ├─ results
+│  │  ├─ case_studies
+│  │  │  ├─ compare_face_detection_fps.png
+│  │  │  ├─ compare_face_detection_fps_per_video.png
+│  │  │  ├─ compare_face_detection_memory.png
+│  │  │  ├─ compare_face_detection_memory_per_video.png
+│  │  │  └─ compare_face_detection_model_accuracy.png
+│  │  └─ unit_test_output
+│  │     ├─ cvzone_one_face_output.png
+│  │     ├─ cvzone_two_faces_output.png
+│  │     ├─ dnn_one_face_output.png
+│  │     ├─ dnn_two_faces_output.png
+│  │     ├─ haar_one_face_output.png
+│  │     ├─ haar_two_faces_output.png
+│  │     ├─ hog_one_face_output.png
+│  │     ├─ hog_two_faces_output.png
+│  │     ├─ mmod_one_face_output.png
+│  │     └─ mmod_two_faces_output.png
+│  └─ test_data
+│     ├─ FDDB/
+│     ├─ fddb_paths.txt
+│     ├─ unit_test
+│     │  ├─ Lenna.png
+│     │  ├─ Peppers.png
+│     │  └─ TwoFaces.jpg
+│     └─ videos
+│        ├─ classroom_30FPS.mp4
+│        ├─ face-demographics-walking-and-pause_12FPS.mp4
+│        ├─ face-demographics-walking_12FPS.mp4
+│        ├─ head-pose-face-detection-female-and-male_12FPS.mp4
+│        ├─ head-pose-face-detection-female_12FPS.mp4
+│        └─ head-pose-face-detection-male_12FPS.mp4
 ├─ docs
+│  ├─ cvzone.md
 │  ├─ depth.md
-│  └─ index.md
-├─ example
-│  └─ example_detect_from_image.py
+│  ├─ dnn.md
+│  ├─ haar.md
+│  ├─ hog.md
+│  ├─ index.md
+│  ├─ mmod.md
+│  ├─ scripts.md
+│  └─ udp_server.md
 ├─ mkdocs.yml
 ├─ requirements.txt
 ├─ run.sh
@@ -194,7 +245,7 @@ OpenCV_Server
 ├─ setup.sh
 ├─ src
 │  ├─ constants.py
-│  ├─ estimate_distance.py
+│  ├─ depth.py
 │  ├─ main.py
 │  ├─ models
 │  │  ├─ __init__.py
@@ -223,6 +274,7 @@ OpenCV_Server
    └─ test_utils.py
 
 ```
+
 
 
 
