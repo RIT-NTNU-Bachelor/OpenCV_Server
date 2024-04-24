@@ -25,10 +25,7 @@ from models.code.cvzone import detect_face_cvzone
 from constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, EYE_DISTANCE_INDEX, MMOD_DETECTOR
 
 # Path to the image with one clear face
-# All models should be able to detect the face in the image 
-# The image is standardized image in the field of Computer Vision, also known as Lenna. 
-# Read more about the image here: https://en.wikipedia.org/wiki/Lenna
-path_to_face_image = "data/test_data/unit_test/Lenna.png"
+path_to_face_image = "data/test_data/unit_test/Female.png"
 
 
 # The test class
@@ -61,16 +58,16 @@ class TestModelsWithOneFace(unittest.TestCase):
         # Check that the boundary box is of a certain width and height
         # Using a range to check that the bounding box
         # This is because the box might change slightly position for each iteration 
-        self.assertGreater(width, 90)
-        self.assertLess(width, 190)
-        self.assertGreater(height, 90)
-        self.assertLess(height, 190)
+        self.assertGreater(width, 50)
+        self.assertLess(width, 100)
+        self.assertGreater(height, 50)
+        self.assertLess(height, 100)
 
         # Checking the position within a set range 
-        self.assertGreater(x, 200)
-        self.assertLess(x, 220)
-        self.assertGreater(y, 190)
-        self.assertLess(y, 215)
+        self.assertGreater(x, 50)
+        self.assertLess(x, 150)
+        self.assertGreater(y, 30)
+        self.assertLess(y, 100)
 
         # Saving the result to an image
         save_test(self.image,"haar_one_face_output.png", faces)
@@ -111,16 +108,16 @@ class TestModelsWithOneFace(unittest.TestCase):
         # Check that the boundary box is of a certain width and height
         # Using a range to check that the bounding box
         # This is because the box might change slightly position for each iteration 
-        self.assertGreater(width, 120)
+        self.assertGreater(width, 50)
         self.assertLess(width, 200)
-        self.assertGreater(height, 150)
+        self.assertGreater(height, 60)
         self.assertLess(height, 220)
 
         # Checking the position within a set range 
-        self.assertGreater(x, 200)
-        self.assertLess(x, 220)
-        self.assertGreater(y, 170)
-        self.assertLess(y, 215)
+        self.assertGreater(x, 50)
+        self.assertLess(x, 150)
+        self.assertGreater(y, 30)
+        self.assertLess(y, 100)
 
         # Saving the result to an image
         save_test(self.image,"dnn_one_face_output.png", faces)
@@ -142,16 +139,16 @@ class TestModelsWithOneFace(unittest.TestCase):
         # Check that the boundary box is of a certain width and height
         # Using a range to check that the bounding box
         # This is because the box might change slightly position for each iteration 
-        self.assertGreater(width, 120)
-        self.assertLess(width, 200)
-        self.assertGreater(height, 150)
-        self.assertLess(height, 220)
+        self.assertGreater(width, 40)
+        self.assertLess(width, 150)
+        self.assertGreater(height, 30)
+        self.assertLess(height, 100)
 
         # Checking the position within a set range 
-        self.assertGreater(x, 170)
-        self.assertLess(x, 220)
-        self.assertGreater(y, 170)
-        self.assertLess(y, 215)
+        self.assertGreater(x, 50)
+        self.assertLess(x, 150)
+        self.assertGreater(y, 30)
+        self.assertLess(y, 100)
 
         # Saving the result to an image
         save_test(self.image,"mmod_one_face_output.png", faces)
