@@ -261,7 +261,14 @@ The system consists of two primary components: the Face Tracking server and the 
 
 ## Case Studies
 
-**NOTE:** As of PR [#54](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/issues/54), this repo does not contain the case studies mentioned in the thesis. It is moved to its own repository. This makes the server more lightweight. By separating the case studies from the main server repository, we improve the cohesion within the server components and the independence of the case studies. This structural decoupling allows for more focused updates and maintenance of both components, facilitating better management and scalability of the codebase.
+**NOTE:** As of PR [#54](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/issues/54), this repo does not contain the case studies mentioned in the thesis. It is moved to its own repository. The arguments for the separation are: 
+
+- **Reduced Repository Size:** Separating case studies into their own repository keeps the main server lightweight, enhancing performance and ease of cloning and setup for new users.
+- **Improved Code Cohesion:** By isolating the case studies, we can maintain a high level of cohesion within each repository, ensuring that each component focuses on a specific set of responsibilities.
+- **Simplified Version Control:** With separate repositories, tracking and reverting changes becomes more straightforward, as the history of commits in each repo is more relevant to its specific content.
+- **Consistent Codebase Across Repositories:** Maintaining the same `models` module in both repositories ensures consistency and interoperability of features, critical for functionality and integration testing.
+- **Focused Issue Tracking and Documentation:** Issues, pull requests, and documentation can be more precisely tailored to the repository's content, improving clarity and effectiveness in project management.
+- **Client Convenience:** Separating the case studies into their own repository simplifies the user experience. The user can utilize each repo without the added complexity of the other repository.  
 
 **Important:** The case study repository utilizes the same code as found in the `src/models` module of the main server. As such, any significant changes made to the `models` module must be reflected in both repositories to ensure consistency with the case studies
 
