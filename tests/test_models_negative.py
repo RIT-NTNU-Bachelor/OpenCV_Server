@@ -20,8 +20,7 @@ from constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DN
 
 
 # Path to the image without a face
-# This is for the negative test, to make sure each function respond with the expected value 
-# The image is an image of a pepper. It is typically used in image processing. 
+# Image taken from the USC-SIPI Image Database: https://sipi.usc.edu/database/
 path_to_peppers_image = "data/test_data/unit_test/Peppers.png"
 
 

@@ -25,6 +25,7 @@ from models.code.cvzone import detect_face_cvzone
 from constants import CVZONE_DETECTOR, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, MMOD_DETECTOR
 
 # Path to the image with two faces
+# Image taken from "The Images of Groups Dataset": http://chenlab.ece.cornell.edu/people/Andy/ImagesOfGroups.html
 path_to_face_image = "data/test_data/unit_test/TwoFaces.jpg"
 
 

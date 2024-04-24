@@ -25,6 +25,7 @@ from models.code.cvzone import detect_face_cvzone
 from constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, EYE_DISTANCE_INDEX, MMOD_DETECTOR
 
 # Path to the image with one clear face
+# Image taken from the USC-SIPI Image Database: https://sipi.usc.edu/database/
 path_to_face_image = "data/test_data/unit_test/Female.png"
 
 
