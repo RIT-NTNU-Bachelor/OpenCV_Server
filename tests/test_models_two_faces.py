@@ -26,7 +26,7 @@ from constants import CVZONE_DETECTOR, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, M
 
 # Path to the image with two faces
 # Image taken from "The Images of Groups Dataset": http://chenlab.ece.cornell.edu/people/Andy/ImagesOfGroups.html
-path_to_face_image = "data/test_data/unit_test/TwoFaces.jpg"
+path_to_face_image = "data/unit_test/TwoFaces.jpg"
 
 
 # The test class

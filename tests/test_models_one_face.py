@@ -26,7 +26,7 @@ from constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DN
 
 # Path to the image with one clear face
 # Image taken from the USC-SIPI Image Database: https://sipi.usc.edu/database/
-path_to_face_image = "data/test_data/unit_test/Female.png"
+path_to_face_image = "data/unit_test/Female.png"
 
 
 # The test class

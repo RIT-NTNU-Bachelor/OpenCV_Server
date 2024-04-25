@@ -184,48 +184,26 @@ OpenCV_Server
 
 │    
 ├─ .gitattributes
-├─ .github
-│  └─ workflows
-│     └─ jupiterhub_workflow.yml
 ├─ .gitignore
 ├─ LICENSE
 ├─ README.md
-├─ analysis
-│  ├─ compare_face_detection_accuracy.ipynb
-│  └─ compare_face_detection_efficacy.ipynb
 ├─ data
-│  ├─ results
-│  │  ├─ case_studies
-│  │  │  ├─ compare_face_detection_fps.png
-│  │  │  ├─ compare_face_detection_fps_per_video.png
-│  │  │  ├─ compare_face_detection_memory.png
-│  │  │  ├─ compare_face_detection_memory_per_video.png
-│  │  │  └─ compare_face_detection_model_accuracy.png
-│  │  └─ unit_test_output
-│  │     ├─ cvzone_one_face_output.png
-│  │     ├─ cvzone_two_faces_output.png
-│  │     ├─ dnn_one_face_output.png
-│  │     ├─ dnn_two_faces_output.png
-│  │     ├─ haar_one_face_output.png
-│  │     ├─ haar_two_faces_output.png
-│  │     ├─ hog_one_face_output.png
-│  │     ├─ hog_two_faces_output.png
-│  │     ├─ mmod_one_face_output.png
-│  │     └─ mmod_two_faces_output.png
-│  └─ test_data
-│     ├─ FDDB/
-│     ├─ fddb_paths.txt
-│     ├─ unit_test
-│     │  ├─ Lenna.png
-│     │  ├─ Peppers.png
-│     │  └─ TwoFaces.jpg
-│     └─ videos
-│        ├─ classroom_30FPS.mp4
-│        ├─ face-demographics-walking-and-pause_12FPS.mp4
-│        ├─ face-demographics-walking_12FPS.mp4
-│        ├─ head-pose-face-detection-female-and-male_12FPS.mp4
-│        ├─ head-pose-face-detection-female_12FPS.mp4
-│        └─ head-pose-face-detection-male_12FPS.mp4
+│  ├─  unit_test_output
+│  │   ├─ cvzone_one_face_output.png
+│  │   ├─ cvzone_two_faces_output.png
+│  │   ├─ dnn_one_face_output.png
+│  │   ├─ dnn_two_faces_output.png
+│  │   ├─ haar_one_face_output.png
+│  │   ├─ haar_two_faces_output.png
+│  │   ├─ hog_one_face_output.png
+│  │   ├─ hog_two_faces_output.png
+│  │   ├─ mmod_one_face_output.png
+│  │   └─ mmod_two_faces_output.png
+│  └─ unit_test
+│     ├─ Lenna.png
+│     ├─ Peppers.png
+│     └─ TwoFaces.jpg
+
 ├─ docs
 │  ├─ cvzone.md
 │  ├─ depth.md
@@ -275,9 +253,6 @@ OpenCV_Server
 
 ```
 
-
-
-
 ## System Description
 
 The system consists of two primary components: the Face Tracking server and the Rendering Engine Client. The Face Tracking Server uses OpenCV to process frames in real-time. For each frame, it detects the position of the face. Once the position is ascertained, these coordinates are sent using the UDP (User Datagram Protocol) to ensure fast and efficient transmission. The Rendering Engine Client then takes over by parsing the received coordinates. Using this data, the engine re-renders the scene to align with the new position of the face. This cycle of detection, transmission, and rendering continues seamlessly with each frame, allowing for a responsive and dynamic integration of face tracking data with the rendered content: 
@@ -286,24 +261,16 @@ The system consists of two primary components: the Face Tracking server and the 
 
 ## Case Studies
 
-For deciding the best face detection algorithm for the thesis, see the case studies created in the `analysis/` folder (created in JupyterHub files). The two main factors for a real-time face detection system is efficacy and accuracy. These factors were also discussed and agreed upon with the bachelor thesis client. There are two case studies
+**NOTE:** As of PR [#54](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/issues/54), this repo does not contain the case studies mentioned in the thesis. It is moved to its own repository. The arguments for the separation are: 
 
-1. Case Study - Comparing Accuracy for Real-Time Face Detection Models
-This case study measures the FPS over a dataset with ~2800 images. It presents the result in plotted in multiple graphs. See the [case study for more information](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/blob/main/analysis/compare_face_detection_accuracy.ipynb)
+- **Reduced Repository Size:** Separating case studies into their own repository keeps the main server lightweight, enhancing performance and ease of cloning and setup for new users.
+- **Improved Code Cohesion:** By isolating the case studies, we can maintain a high level of cohesion within each repository, ensuring that each component focuses on a specific set of responsibilities.
+- **Simplified Version Control:** With separate repositories, tracking and reverting changes becomes more straightforward, as the history of commits in each repo is more relevant to its specific content.
+- **Consistent Codebase Across Repositories:** Maintaining the same `models` module in both repositories ensures consistency and interoperability of features, critical for functionality and integration testing.
+- **Focused Issue Tracking and Documentation:** Issues, pull requests, and documentation can be more precisely tailored to the repository's content, improving clarity and effectiveness in project management.
+- **Client Convenience:** Separating the case studies into their own repository simplifies the user experience. The user can utilize each repo without the added complexity of the other repository.  
 
-2. Case Study - Comparing Efficacy for a Real-Time Face Detection System
-This case study measures the memory usage of each algorithm. It plots the result as peak mega byte usage during a stress test of the algorithms. For this case, the python package `memory_profiler` is used. The result is plotted in multiple graphs. See the [case study for more information](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/blob/main/analysis/compare_face_detection_efficacy.ipynb)
-
-
-**Note:** The case studies do not represent an absolute truth. There are most likely something that makes it not objectively true. Use them with caution.
-
-Code Owners are allowed to use the Github Workflow that triggers the compiling of the case studies. The workflow also downloads the dataset needed. The code for the workflow can be found [here](https://github.com/RIT-NTNU-Bachelor/OpenCV_Server/blob/main/.github/workflows/jupiterhub_workflow.yml). 
-
-Estimated time of compiling both case studies (Note: the repository includes compiled notebooks): 
-
-```txt
-~ 2h, 46 min
-```
+**Important:** The case study repository utilizes the same code as found in the `src/models` module of the main server. As such, any significant changes made to the `models` module must be reflected in both repositories to ensure consistency with the case studies
 
 ## License
 
