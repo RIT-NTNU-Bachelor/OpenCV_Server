@@ -28,7 +28,7 @@ from constants import CVZONE_DETECTOR_MAX_ONE, HAAR_CLASSIFIER, HOG_DETECTOR, DN
 # All models should be able to detect the face in the image 
 # The image is standardized image in the field of Computer Vision, also known as Lenna. 
 # Read more about the image here: https://en.wikipedia.org/wiki/Lenna
-path_to_face_image = "data/test_data/unit_test/Lenna.png"
+path_to_face_image = "data/unit_test/Lenna.png"
 
 
 # The test class

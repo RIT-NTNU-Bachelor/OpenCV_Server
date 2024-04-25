@@ -28,7 +28,7 @@ from constants import CVZONE_DETECTOR, HAAR_CLASSIFIER, HOG_DETECTOR, DNN_NET, M
 # All models should be able to detect both faces in the image 
 # The image is taken from a podcast episode cover produced by the company Goop.
 # Here is the image source: https://goop.com/goopfellas-podcast/stan-tatkin-what-keeps-two-people-together/
-path_to_face_image = "data/test_data/unit_test/TwoFaces.jpg"
+path_to_face_image = "data/unit_test/TwoFaces.jpg"
 
 
 # The test class

@@ -6,9 +6,7 @@ import numpy as np
 
 # Constants for the save_test function 
 COLOR = (0, 255, 0) # Color of landmark or boarder
-PARENT_DIR = "data/results/unit_test_output/" # output folder relative to the root folder of the project
-
-
+PARENT_DIR = "data/unit_test_output/" # output folder relative to the root folder of the project
 
 def set_project_path_for_tests():
     """Adds the parent 'src' directory to the system path.
