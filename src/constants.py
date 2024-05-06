@@ -9,8 +9,9 @@ from cvzone.FaceMeshModule import FaceMeshDetector
 # Average distance between human eyes (in millimeters)
 INTEROCULAR_DISTANCE = 63
 
-# Focal length of the camera in use (in some unit)
-FOCAL_LENGTH = 655
+# Focal length of the camera in use 
+# Retrived from case study: calculate focal length 
+FOCAL_LENGTH = 1432
 
 # ----------------------------------------------------------------------------
 # DNN Model Configuration
