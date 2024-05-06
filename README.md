@@ -181,7 +181,6 @@ print(f"MMOD Detected Faces: {faces_mmod}")
 
 ```
 OpenCV_Server
-
 │    
 ├─ .gitattributes
 ├─ .gitignore
@@ -203,7 +202,6 @@ OpenCV_Server
 │     ├─ Lenna.png
 │     ├─ Peppers.png
 │     └─ TwoFaces.jpg
-
 ├─ docs
 │  ├─ cvzone.md
 │  ├─ depth.md
@@ -218,8 +216,7 @@ OpenCV_Server
 ├─ requirements.txt
 ├─ run.sh
 ├─ scripts
-│  ├─ camera-center.py
-│  └─ run-all.py
+│  └─ camera-center.py
 ├─ setup.sh
 ├─ src
 │  ├─ constants.py
