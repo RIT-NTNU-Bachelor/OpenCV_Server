@@ -11,12 +11,10 @@ OpenCV_Server/
 │
 ├─ docs/ # The documentation homepage.
 ├─ src/ # Source files for the project.
-├─ analysis/ # Jupiter notebooks for our case studies 
 ├─ scripts/ # Other useful independent scripts
 ├─ data/ 
-|  ├─ results/ # Images from successful unit test, and graphs from case studies 
-|  └─ test_data/  # The folder with datasets for the case studies
-├─ data/
+|  ├─ unit_test/ # The folder with datasets for the unit tests
+|  └─ unit_test_output/  # Images from successful unit test, and graphs from case studies 
 ├─ tests/ # Test scripts and test cases.
 ├─ mkdocs.yml # The configuration file for MkDocs.
 ├─ requirements.txt # Project dependencies.
